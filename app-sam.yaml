@@ -6,9 +6,6 @@ Globals:
     Runtime: python3.7
     Layers:
       - !Ref BrwyattAPI
-  LayerVersion:
-    CompatibleRuntimes:
-      - python3.7
 
 Parameters:
   Stage:
@@ -28,6 +25,8 @@ Resources:
       Description: Code for api.brwyatt.net
       ContentUri: build/
       RetentionPolicy: Retain
+      CompatibleRuntimes:
+        - python3.7
   Time:
     Type: AWS::Serverless::Function
     Properties:
