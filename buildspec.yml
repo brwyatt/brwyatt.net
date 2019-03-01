@@ -7,9 +7,9 @@ phases:
   pre_build:
     commands:
       - echo "Installing dependencies - `pwd`"
-      - pip install -r requirements.txt
-      - mkdir build
-      - cp -r src build/python
+      - mkdir -p build/python
+      - pip install -r requirements.txt --target build/python
+      - cp -r src/* build/python/
       - echo "dependencies install completed `date`"
   build:
     commands:
