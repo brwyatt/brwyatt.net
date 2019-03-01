@@ -15,7 +15,7 @@ Resources:
   brwyattapi:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      LayerName: api.brwyatt.net
+      LayerName: brwyatt-api
       Description: Code for api.brwyatt.net
       ContentUri: build/
       CompatibleRuntimes:
