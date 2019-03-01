@@ -35,8 +35,8 @@ Resources:
           Properties:
             Path: /time
             Method: GET
-            Layers:
-            - !Ref brwyattapi
+      Layers:
+        - !Ref brwyattapi
 
 Outputs:
   ApiUrl:
