@@ -27,7 +27,7 @@ Resources:
   BrwyattApiLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      LayerName: !sub 'Brwyatt-API-${Stage}'
+      LayerName: !Sub 'Brwyatt-API-${Stage}'
       Description: Code for api.brwyatt.net
       ContentUri: build/
       RetentionPolicy: Retain
