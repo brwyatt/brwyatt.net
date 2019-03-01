@@ -12,9 +12,10 @@ Parameters:
     Description: Stage that can be added to resource names
 
 Resources:
-  brwyatt_api:
+  brwyattapi:
     Type: AWS::Serverless::LayerVersion
     Properties:
+      LayerName: api.brwyatt.net
       Description: Code for api.brwyatt.net
       ContentUri: build/
       CompatibleRuntimes:
@@ -34,8 +35,8 @@ Resources:
           Properties:
             Path: /time
             Method: GET
-            # Layers:
-            # - !Ref brwyatt_api
+            Layers:
+            - !Ref brwyattapi
 
 Outputs:
   ApiUrl:
