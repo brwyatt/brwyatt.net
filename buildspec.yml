@@ -8,7 +8,7 @@ phases:
     commands:
       - echo "Installing dependencies - `pwd`"
       - mkdir -p build/python
-      - pip install -r requirements.txt --target build/python
+      - grep -ivEe '^boto(3|core)[=<>]' requirements.txt | pip install -r /dev/stdin --target build/python
       - cp -r src/* build/python/
       - echo "dependencies install completed `date`"
   build:
