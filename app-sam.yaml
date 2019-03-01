@@ -3,7 +3,6 @@ Transform: AWS::Serverless-2016-10-31
 
 Globals:
   Function:
-    Policies: AWSLambdaBasicExecutionRole
     Runtime: python3.7
     Layers:
       - !Ref BrwyattAPI
@@ -34,6 +33,7 @@ Resources:
     Properties:
       Handler: get_time.handler
       CodeUri: lambda/get_time.py
+      Policies: AWSLambdaBasicExecutionRole
       Events:
         ApiEventSource:
           Type: Api
@@ -45,6 +45,7 @@ Resources:
     Properties:
       Handler: get_test_layer.handler
       CodeUri: lambda/get_test_layer.py
+      Policies: AWSLambdaBasicExecutionRole
       Events:
         ApiEventSource:
           Type: Api
