@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: 2010-09-09
 Parameters:
     ServiceName:
         Type: String
-        Default: brwyatt-api
+        Default: Brwyatt-API
         Description: Name of the service - Used in all resources
 Resources:
     # Code repository for the service
@@ -183,11 +183,11 @@ Resources:
                       Configuration:
                         ActionMode: CHANGE_SET_REPLACE
                         RoleArn: !GetAtt CloudFormationExecutionRole.Arn
-                        StackName: !Sub '${ServiceName}-Stack-Beta'
+                        StackName: !Sub '${ServiceName}-Beta'
                         ChangeSetName: !Sub '${ServiceName}-ChangeSet-Beta'
                         TemplatePath: BuiltZip::app-output_sam.yaml
                         Capabilities: CAPABILITY_IAM
-                        ParameterOverrides: '{ "Stage": "beta" }'
+                        ParameterOverrides: '{ "Stage": "Beta" }'
                       InputArtifacts:
                         - Name: BuiltZip
                       RunOrder: 1
@@ -200,7 +200,7 @@ Resources:
                       Configuration:
                         ActionMode: CHANGE_SET_EXECUTE
                         RoleArn: !GetAtt CloudFormationExecutionRole.Arn
-                        StackName: !Sub '${ServiceName}-Stack-Beta'
+                        StackName: !Sub '${ServiceName}-Beta'
                         ChangeSetName: !Sub '${ServiceName}-ChangeSet-Beta'
                       OutputArtifacts:
                         - Name: !Sub '${ServiceName}BetaChangeSet'
@@ -216,11 +216,11 @@ Resources:
                       Configuration:
                         ActionMode: CHANGE_SET_REPLACE
                         RoleArn: !GetAtt CloudFormationExecutionRole.Arn
-                        StackName: !Sub '${ServiceName}-Stack-Gamma'
+                        StackName: !Sub '${ServiceName}-Gamma'
                         ChangeSetName: !Sub '${ServiceName}-ChangeSet-Gamma'
                         TemplatePath: BuiltZip::app-output_sam.yaml
                         Capabilities: CAPABILITY_IAM
-                        ParameterOverrides: '{ "Stage": "gamma" }'
+                        ParameterOverrides: '{ "Stage": "Gamma" }'
                       InputArtifacts:
                         - Name: BuiltZip
                       RunOrder: 1
@@ -233,7 +233,7 @@ Resources:
                       Configuration:
                         ActionMode: CHANGE_SET_EXECUTE
                         RoleArn: !GetAtt CloudFormationExecutionRole.Arn
-                        StackName: !Sub '${ServiceName}-Stack-Gamma'
+                        StackName: !Sub '${ServiceName}-Gamma'
                         ChangeSetName: !Sub '${ServiceName}-ChangeSet-Gamma'
                       OutputArtifacts:
                         - Name: !Sub '${ServiceName}GammaChangeSet'
@@ -256,11 +256,11 @@ Resources:
                       Configuration:
                         ActionMode: CHANGE_SET_REPLACE
                         RoleArn: !GetAtt CloudFormationExecutionRole.Arn
-                        StackName: !Sub '${ServiceName}-Stack-Prod'
+                        StackName: !Sub '${ServiceName}-Prod'
                         ChangeSetName: !Sub '${ServiceName}-ChangeSet-Prod'
                         TemplatePath: BuiltZip::app-output_sam.yaml
                         Capabilities: CAPABILITY_IAM
-                        ParameterOverrides: '{ "Stage": "prod" }'
+                        ParameterOverrides: '{ "Stage": "Prod" }'
                       InputArtifacts:
                         - Name: BuiltZip
                       RunOrder: 2
@@ -273,7 +273,7 @@ Resources:
                       Configuration:
                         ActionMode: CHANGE_SET_EXECUTE
                         RoleArn: !GetAtt CloudFormationExecutionRole.Arn
-                        StackName: !Sub '${ServiceName}-Stack-Prod'
+                        StackName: !Sub '${ServiceName}-Prod'
                         ChangeSetName: !Sub '${ServiceName}-ChangeSet-Prod'
                       OutputArtifacts:
                         - Name: !Sub '${ServiceName}ProdChangeSet'

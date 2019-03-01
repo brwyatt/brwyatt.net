@@ -11,10 +11,10 @@ Parameters:
   Stage:
     Type: String
     AllowedValues:
-      - beta
-      - gamma
-      - prod
-    Default: beta
+      - Beta
+      - Gamma
+      - Prod
+    Default: Beta
     Description: Stage that can be added to resource names
 
 Resources:
