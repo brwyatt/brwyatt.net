@@ -63,7 +63,7 @@ Resources:
 Outputs:
   ApiUrl:
     Description: URL for application
-    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod'
+    Value: !Sub 'https://${BrwyattApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${Stage}'
     Export:
       Name: !Sub 'ApiUrl-${Stage}'
 
