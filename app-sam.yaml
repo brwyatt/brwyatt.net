@@ -21,6 +21,7 @@ Resources:
   BrwyattApiGateway:
     Type: AWS::Serverless::Api
     Properties:
+      Name: Brwyatt-API
       StageName: !Ref Stage
       Variables:
         Stage: !Ref Stage
