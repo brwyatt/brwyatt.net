@@ -5,7 +5,7 @@ Globals:
   Function:
     Runtime: python3.7
     Layers:
-      - !Ref BrwyattAPI
+      - !Ref BrwyattApiLayer
 
 Parameters:
   Stage:
@@ -18,10 +18,16 @@ Parameters:
     Description: Stage that can be added to resource names
 
 Resources:
-  BrwyattAPI:
+  BrwyattApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: !Ref Stage
+      Variables:
+        Stage: !Ref Stage
+  BrwyattApiLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      LayerName: Brwyatt-API
+      LayerName: !sub 'Brwyatt-API-${Stage}'
       Description: Code for api.brwyatt.net
       ContentUri: build/
       RetentionPolicy: Retain
@@ -37,6 +43,7 @@ Resources:
         ApiEventSource:
           Type: Api
           Properties:
+            RestApiId: !Ref BrwyattApiGateway
             Path: /time
             Method: GET
   TestLayer:
@@ -49,6 +56,7 @@ Resources:
         ApiEventSource:
           Type: Api
           Properties:
+            RestApiId: !Ref BrwyattApiGateway
             Path: /test_layer
             Method: GET
 
