@@ -1,6 +1,16 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 
+Globals:
+  Function:
+    Policies: AWSLambdaBasicExecutionRole
+    Runtime: python3.7
+    Layers:
+      - !Ref BrwyattAPI
+  LayerVersion:
+    CompatibleRuntimes:
+      - python3.7
+
 Parameters:
   Stage:
     Type: String
@@ -12,31 +22,35 @@ Parameters:
     Description: Stage that can be added to resource names
 
 Resources:
-  brwyattapi:
+  BrwyattAPI:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      LayerName: brwyatt-api
+      LayerName: Brwyatt-API
       Description: Code for api.brwyatt.net
       ContentUri: build/
-      CompatibleRuntimes:
-        - python3.7
       RetentionPolicy: Retain
-
-  TimeFunction:
+  Time:
     Type: AWS::Serverless::Function
     Properties:
       Handler: get_time.handler
       CodeUri: lambda/get_time.py
-      Runtime: python3.7
-      Policies: AWSLambdaBasicExecutionRole
       Events:
         ApiEventSource:
           Type: Api
           Properties:
             Path: /time
             Method: GET
-      Layers:
-        - !Ref brwyattapi
+  TestLayer:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: get_test_layer.handler
+      CodeUri: lambda/get_test_layer.py
+      Events:
+        ApiEventSource:
+          Type: Api
+          Properties:
+            Path: /test_layer
+            Method: GET
 
 Outputs:
   ApiUrl:
@@ -44,3 +58,5 @@ Outputs:
     Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod'
     Export:
       Name: !Sub 'ApiUrl-${Stage}'
+
+# vim: ts=2 sts=2 sw=2 expandtab
