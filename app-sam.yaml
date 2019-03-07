@@ -64,7 +64,7 @@ Resources:
     Type: AWS::ApiGateway::BasePathMapping
     DependsOn: BrwyattApiStage
     Properties:
-      BasePath: '/api'
+      BasePath: 'api'
       DomainName: !Ref WebDomain
       RestApiId: !Ref BrwyattApi
       Stage: !Ref Stage
