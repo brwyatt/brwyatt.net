@@ -36,7 +36,7 @@ Resources:
 
   WebMapping:
     Type: AWS::ApiGateway::BasePathMapping
-    DependsOn: !Ref BrwyattWeb.Stage
+    DependsOn: BrwyattWeb.Stage
     Properties:
       BasePath: ''
       DomainName: !Ref WebDomain
@@ -53,7 +53,7 @@ Resources:
 
   ApiMapping:
     Type: AWS::ApiGateway::BasePathMapping
-    DependsOn: !Ref BrwyattApi.Stage
+    DependsOn: BrwyattApi.Stage
     Properties:
       BasePath: ''
       DomainName: !Ref ApiDomain
@@ -62,7 +62,7 @@ Resources:
 
   WebApiMapping:
     Type: AWS::ApiGateway::BasePathMapping
-    DependsOn: !Ref BrwyattApi.Stage
+    DependsOn: BrwyattApi.Stage
     Properties:
       BasePath: '/api'
       DomainName: !Ref WebDomain
