@@ -79,7 +79,7 @@ Resources:
       CompatibleRuntimes:
         - python3.7
 
-  Time:
+  ApiTime:
     Type: AWS::Serverless::Function
     Properties:
       Handler: get_time.handler
@@ -93,7 +93,7 @@ Resources:
             Path: /time
             Method: GET
 
-  TestLayer:
+  ApiTestLayer:
     Type: AWS::Serverless::Function
     Properties:
       Handler: get_test_layer.handler
@@ -105,6 +105,20 @@ Resources:
           Properties:
             RestApiId: !Ref BrwyattApi
             Path: /test_layer
+            Method: GET
+
+  WebHelloWorld:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: hello_world.handler
+      CodeUri: lambda/hello_world.py
+      Policies: AWSLambdaBasicExecutionRole
+      Events:
+        ApiEventSource:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BrwyattWeb
+            Path: /
             Method: GET
 
 Outputs:
