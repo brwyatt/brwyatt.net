@@ -4,6 +4,10 @@ Parameters:
     Type: String
     Default: BrwyattWeb
     Description: Name of the service - Used in all resources
+  BaseDomain:
+    Type: String
+    Default: brwyatt.net
+    Description: Base Domain name for application URLs
   GitHubUser:
     Type: String
     Description: GitHub UserName. This username must have access to the GitHubToken
@@ -202,7 +206,12 @@ Resources:
                 ChangeSetName: !Sub '${ServiceName}-ChangeSet-Beta'
                 TemplatePath: BuiltZip::app-output_sam.yaml
                 Capabilities: CAPABILITY_IAM
-                ParameterOverrides: '{ "Stage": "Beta" }'
+                ParameterOverrides: !Sub |
+                  {
+                    "Stage": "Beta",
+                    "WebDomain": "beta.${BaseDomain}",
+                    "ApiDomain": "api.beta.${BaseDomain}"
+                  }
               InputArtifacts:
                 - Name: BuiltZip
               RunOrder: 1
@@ -235,7 +244,12 @@ Resources:
                 ChangeSetName: !Sub '${ServiceName}-ChangeSet-Gamma'
                 TemplatePath: BuiltZip::app-output_sam.yaml
                 Capabilities: CAPABILITY_IAM
-                ParameterOverrides: '{ "Stage": "Gamma" }'
+                ParameterOverrides: !Sub |
+                  {
+                    "Stage": "Gamma",
+                    "WebDomain": "gamma.${BaseDomain}",
+                    "ApiDomain": "api.gamma.${BaseDomain}"
+                  }
               InputArtifacts:
                 - Name: BuiltZip
               RunOrder: 1
@@ -275,7 +289,12 @@ Resources:
                 ChangeSetName: !Sub '${ServiceName}-ChangeSet-Prod'
                 TemplatePath: BuiltZip::app-output_sam.yaml
                 Capabilities: CAPABILITY_IAM
-                ParameterOverrides: '{ "Stage": "Prod" }'
+                ParameterOverrides: !Sub |
+                  {
+                    "Stage": "Prod",
+                    "WebDomain": "${BaseDomain}",
+                    "ApiDomain": "api.${BaseDomain}"
+                  }
               InputArtifacts:
                 - Name: BuiltZip
               RunOrder: 2

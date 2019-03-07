@@ -16,24 +16,69 @@ Parameters:
       - Prod
     Default: Beta
     Description: Stage that can be added to resource names
+  ApiDomain:
+    Type: String
+    Default: 'api.brwyatt.net'
+    Description: API domain name
+  WebDomain:
+    Type: String
+    Default: 'brwyatt.net'
+    Description: Web UI domain name
 
 Resources:
-  BrwyattApiGateway:
+  BrwyattWeb:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: !Sub 'Brwyatt-Web-${Stage}'
+      StageName: !Ref Stage
+      Variables:
+        Stage: !Ref Stage
+
+  WebMapping:
+    Type: AWS::ApiGateway::BasePathMapping
+    DependsOn: !Ref BrwyattWeb.Stage
+    Properties:
+      BasePath: ''
+      DomainName: !Ref WebDomain
+      RestApiId: !Ref BrwyattWeb
+      Stage: !Ref Stage
+
+  BrwyattApi:
     Type: AWS::Serverless::Api
     Properties:
       Name: !Sub 'Brwyatt-API-${Stage}'
       StageName: !Ref Stage
       Variables:
         Stage: !Ref Stage
-  BrwyattApiLayer:
+
+  ApiMapping:
+    Type: AWS::ApiGateway::BasePathMapping
+    DependsOn: !Ref BrwyattApi.Stage
+    Properties:
+      BasePath: ''
+      DomainName: !Ref ApiDomain
+      RestApiId: !Ref BrwyattApi
+      Stage: !Ref Stage
+
+  WebApiMapping:
+    Type: AWS::ApiGateway::BasePathMapping
+    DependsOn: !Ref BrwyattApi.Stage
+    Properties:
+      BasePath: '/api'
+      DomainName: !Ref WebDomain
+      RestApiId: !Ref BrwyattApi
+      Stage: !Ref Stage
+
+  BrwyattLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      LayerName: !Sub 'Brwyatt-API-${Stage}'
-      Description: Code for api.brwyatt.net
+      LayerName: !Sub 'Brwyatt-${Stage}'
+      Description: Code for brwyatt.net
       ContentUri: build/
-      RetentionPolicy: Retain
+      RetentionPolicy: Delete
       CompatibleRuntimes:
         - python3.7
+
   Time:
     Type: AWS::Serverless::Function
     Properties:
@@ -44,9 +89,10 @@ Resources:
         ApiEventSource:
           Type: Api
           Properties:
-            RestApiId: !Ref BrwyattApiGateway
+            RestApiId: !Ref BrwyattApi
             Path: /time
             Method: GET
+
   TestLayer:
     Type: AWS::Serverless::Function
     Properties:
@@ -57,14 +103,14 @@ Resources:
         ApiEventSource:
           Type: Api
           Properties:
-            RestApiId: !Ref BrwyattApiGateway
+            RestApiId: !Ref BrwyattApi
             Path: /test_layer
             Method: GET
 
 Outputs:
   ApiUrl:
-    Description: URL for application
-    Value: !Sub 'https://${BrwyattApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${Stage}'
+    Description: URL for application API
+    Value: !Sub 'https://${ApiDomain}/'
     Export:
       Name: !Sub 'ApiUrl-${Stage}'
 
