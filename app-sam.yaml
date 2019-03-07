@@ -5,7 +5,7 @@ Globals:
   Function:
     Runtime: python3.7
     Layers:
-      - !Ref BrwyattApiLayer
+      - !Ref BrwyattLayer
 
 Parameters:
   Stage:
