@@ -43,6 +43,15 @@ Resources:
       RestApiId: !Ref BrwyattWeb
       Stage: !Ref Stage
 
+  WebMappingWww:
+    Type: AWS::ApiGateway::BasePathMapping
+    DependsOn: BrwyattWebStage
+    Properties:
+      BasePath: ''
+      DomainName: !Sub 'www.${WebDomain}'
+      RestApiId: !Ref BrwyattWeb
+      Stage: !Ref Stage
+
   BrwyattApi:
     Type: AWS::Serverless::Api
     Properties:
