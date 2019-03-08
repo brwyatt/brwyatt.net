@@ -17,6 +17,7 @@ templates = Environment(
 
 def render_page(path, format='html', event={}, status_msg=None):
     log.info(f'Rendering page for "{path}" in "{format}"')
+
     resp = {
         'statusCode': '200',
         'headers': {

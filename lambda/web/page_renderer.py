@@ -14,20 +14,19 @@ def handler(event, context):
     log.debug('event: {}'.format(event))
 
     try:
-        log.debug('Calling Render_Page')
-        return render_page(event['path'], format='html', event=event)
+        resp = render_page(event['path'], format='html', event=event)
     except FileNotFoundException as e:
         log.error('Caught 404 while rendering "{}"'.format(event['path']))
-        return error404()
+        resp = error404()
     except Exception as e:
         log.critical('Unexpected exception rendering route "{}": {} - {}'
                      .format(event['path'], e.__class__.__name__, str(e)))
         try:
-            return error500()
+            resp = error500()
         except Exception as e:
             log.critical('Failed to process 500 error, falling back to plain '
                          '500. {}: {}'.format(e.__class__.__name__, str(e)))
-            return {
+            resp = {
                 'statusCode': '500',
                 'headers': {
                     'Content-Type': 'text/html'
@@ -38,3 +37,6 @@ def handler(event, context):
                     'attempting to handle another server error.</p>'
                 )
             }
+
+    log.debug(f'sending response to client:\n{resp}')
+    return resp
