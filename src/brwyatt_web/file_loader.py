@@ -24,7 +24,7 @@ def load_static_asset(asset_type, file_name):
 
     asset_dir = os.path.abspath(os.path.join(static_path, asset_type))
     log.debug('asset_dir = {}'.format(asset_dir))
-    if static_path != os.path.commonpath(static_path, asset_dir):
+    if static_path != os.path.commonpath([static_path, asset_dir]):
         errmsg = 'Asset directory is outside static assets directory'
         log.error(errmsg)
         raise PathSecurityException(errmsg)
@@ -36,7 +36,7 @@ def load_static_asset(asset_type, file_name):
 
     file_path = os.path.abspath(os.path.join(asset_dir, file_name))
     log.debug('asset file_path = {}'.format(file_path))
-    if asset_dir != os.path.commonpath(asset_dir, file_path):
+    if asset_dir != os.path.commonpath([asset_dir, file_path]):
         errmsg = 'Requested asset is outside of expected asset directory'
         log.error(errmsg)
         raise PathSecurityException(errmsg)
