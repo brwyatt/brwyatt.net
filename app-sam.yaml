@@ -6,6 +6,9 @@ Globals:
     Runtime: python3.7
     Layers:
       - !Ref BrwyattLayer
+    Environment:
+      Variables:
+        LOGLEVEL: !Ref LogLevel
 
 Parameters:
   Stage:
@@ -24,6 +27,10 @@ Parameters:
     Type: String
     Default: 'brwyatt.net'
     Description: Web UI domain name
+  LogLevel:
+    Type: String
+    Default: 'DEBUG'
+    Description: Lambda Logging Level
 
 Resources:
   BrwyattWeb:
@@ -147,18 +154,21 @@ Resources:
       Policies: AWSLambdaBasicExecutionRole
       Layers:
         - !Ref BrwyattStaticLayer
+      Environment:
+        Variables:
+          STATIC_PATH: '/opt'
       Events:
         css:
           Type: Api
           Properties:
             RestApiId: !Ref BrwyattWeb
-            Path: '/css/{proxy+}'
+            Path: '/css/{resource+}'
             Method: GET
         js:
           Type: Api
           Properties:
             RestApiId: !Ref BrwyattWeb
-            Path: '/js/{proxy+}'
+            Path: '/js/{resource+}'
             Method: GET
 
 Outputs:
