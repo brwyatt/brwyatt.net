@@ -93,7 +93,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: get_time.handler
-      CodeUri: lambda/get_time.py
+      CodeUri: lambda/api/get_time.py
       Policies: AWSLambdaBasicExecutionRole
       Events:
         ApiEventSource:
@@ -103,34 +103,60 @@ Resources:
             Path: /time
             Method: GET
 
-  ApiTestLayer:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: get_test_layer.handler
-      CodeUri: lambda/get_test_layer.py
-      Policies: AWSLambdaBasicExecutionRole
-      Events:
-        ApiEventSource:
-          Type: Api
-          Properties:
-            RestApiId: !Ref BrwyattApi
-            Path: /test_layer
-            Method: GET
-
   RenderPage:
     Type: AWS::Serverless::Function
     Properties:
       Handler: page_renderer.handler
-      CodeUri: lambda/page_renderer.py
+      CodeUri: lambda/web/page_renderer.py
       Policies: AWSLambdaBasicExecutionRole
-      Layers:
-        - !Ref BrwyattStaticLayer
       Events:
-        ApiEventSource:
+        root:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BrwyattWeb
+            Path: '/'
+            Method: GET
+        proxy:
           Type: Api
           Properties:
             RestApiId: !Ref BrwyattWeb
             Path: '/{proxy+}'
+            Method: GET
+
+  DebugPage:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: debug.handler
+      CodeUri: lambda/web/debug.py
+      Policies: AWSLambdaBasicExecutionRole
+      Events:
+        test:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BrwyattWeb
+            Path: '/test'
+            Method: GET
+
+  StaticContent:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: fetch_static.handler
+      CodeUri: lambda/web/fetch_static.py
+      Policies: AWSLambdaBasicExecutionRole
+      Layers:
+        - !Ref BrwyattStaticLayer
+      Events:
+        css:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BrwyattWeb
+            Path: '/css/{proxy+}'
+            Method: GET
+        js:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BrwyattWeb
+            Path: '/js/{proxy+}'
             Method: GET
 
 Outputs:

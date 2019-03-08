@@ -21,6 +21,8 @@ def handler(event, context):
             '  <pre>{context}</pre>'
             '  <h2>/opt</h2>'
             '  <pre>{opt}</pre>'
+            '  <h3>/opt/python</h3>'
+            '  <pre>{opt_python}</pre>'
             '</body>'
             '</html>'
         ).format(
@@ -30,6 +32,8 @@ def handler(event, context):
             context=json.dumps(context, indent=4, sort_keys=True,
                                default=lambda x: '{}: {}'.format(type(x),
                                                                  str(x))),
-            opt=json.dumps(os.listdir('/opt'), indent=4, sort_keys=True)
+            opt=json.dumps(os.listdir('/opt'), indent=4, sort_keys=True),
+            opt_python=json.dumps(
+                os.listdir('/opt/python'), indent=4, sort_keys=True),
         )
     }
