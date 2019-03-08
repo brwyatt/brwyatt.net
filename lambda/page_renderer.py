@@ -24,8 +24,12 @@ def handler(event, context):
             '</body>'
             '</html>'
         ).format(
-            event=json.dumps(event, indent=4, sort_keys=True),
-            context=json.dumps(context, indent=4, sort_keys=True),
+            event=json.dumps(event, indent=4, sort_keys=True,
+                             default=lambda x: '{}: {}'.format(type(x),
+                                                               str(x))),
+            context=json.dumps(context, indent=4, sort_keys=True,
+                               default=lambda x: '{}: {}'.format(type(x),
+                                                                 str(x))),
             opt=json.dumps(os.listdir('/opt'), indent=4, sort_keys=True)
         )
     }
