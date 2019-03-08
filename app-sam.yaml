@@ -79,7 +79,7 @@ Resources:
       CompatibleRuntimes:
         - python3.7
 
-  BrwyattStaicLayer:
+  BrwyattStaticLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
       LayerName: !Sub 'BrwyattStatic-${Stage}'
