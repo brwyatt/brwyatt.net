@@ -45,6 +45,6 @@ def handler(event, context):
                   .format(asset_type, file_name, str(e)))
         return error400()
     except Exception as e:
-        log.error('Unexpected exception fetching resource "{}/{}": {}'
-                  .format(asset_type, file_name, str(e)))
+        log.critical('Unexpected exception fetching resource "{}/{}": {}'
+                     .format(asset_type, file_name, str(e)))
         return error500()
