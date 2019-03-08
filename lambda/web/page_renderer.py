@@ -1,17 +1,10 @@
+from brwyatt_web.web import render_page
+from brwyatt_web.web.errors import error404
+from brwyatt_web.web.routes import routes
+
+
 def handler(event, context):
-    return {
-        'statusCode': '200',
-        'headers': {
-            'Content-Type': 'text/html',
-        },
-        'body': (
-            '<html>'
-            '<head>'
-            '  <title>Hello World</title>'
-            '</head>'
-            '<body>'
-            '  <h1>Hello World</h1>'
-            '</body>'
-            '</html>'
-        )
-    }
+    if event['path'] in routes:
+        return render_page(**routes[event['path']]())
+    else:
+        return error404()
