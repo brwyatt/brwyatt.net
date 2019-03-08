@@ -3,3 +3,8 @@
 __pycache__/
 /env
 *.egg-info/
+
+# Build artifacts
+/build/
+/staticbuild/
+/templatesbuild/
