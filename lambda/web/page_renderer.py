@@ -14,6 +14,7 @@ def handler(event, context):
     log.debug('event: {}'.format(event))
 
     try:
+        log.debug('Calling Render_Page')
         return render_page(event['path'], format='html', event=event)
     except FileNotFoundException as e:
         log.error('Caught 404 while rendering "{}"'.format(event['path']))

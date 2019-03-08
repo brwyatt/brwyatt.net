@@ -16,6 +16,7 @@ templates = Environment(
 
 
 def render_page(path, format='html', event={}, status_msg=None):
+    log.info(f'Rendering page for "{path}" in "{format}"')
     resp = {
         'statusCode': '200',
         'headers': {
@@ -23,6 +24,7 @@ def render_page(path, format='html', event={}, status_msg=None):
     }
 
     if path not in routes:
+        log.error('No route found for "{path}"')
         raise FileNotFoundException('Invalid route')
 
     page_template = templates.get_template(routes[path])
@@ -34,8 +36,10 @@ def render_page(path, format='html', event={}, status_msg=None):
         base = 'base.json'
         resp['headers']['Content-Type'] = 'application/json',
     else:
+        log.error('Unsupported format "{format}"')
         raise InvalidClientRequestException(f'Unsupported format "{format}"')
 
     resp['body'] = page_template.render(event=event, base=base,
                                         status_msg=status_msg)
+    log.debug(f'Page rendered as:\n{resp["body"]}')
     return resp
