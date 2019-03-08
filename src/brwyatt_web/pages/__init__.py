@@ -32,10 +32,10 @@ def render_page(path, format='html', event={}, status_msg=None):
 
     if format.lower() == 'html':
         base = 'base.html'
-        resp['headers']['Content-Type'] = 'text/html',
+        resp['headers']['Content-Type'] = 'text/html'
     elif format.lower() == 'json':
         base = 'base.json'
-        resp['headers']['Content-Type'] = 'application/json',
+        resp['headers']['Content-Type'] = 'application/json'
     else:
         log.error('Unsupported format "{format}"')
         raise InvalidClientRequestException(f'Unsupported format "{format}"')
