@@ -79,6 +79,16 @@ Resources:
       CompatibleRuntimes:
         - python3.7
 
+  BrwyattStaicLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: !Sub 'BrwyattStatic-${Stage}'
+      Description: Static code assets for brwyatt.net - CSS, JS
+      ContentUri: static/
+      RetentionPolicy: Delete
+      CompatibleRuntimes:
+        - python3.7
+
   ApiTime:
     Type: AWS::Serverless::Function
     Properties:
@@ -107,18 +117,20 @@ Resources:
             Path: /test_layer
             Method: GET
 
-  WebHelloWorld:
+  RenderPage:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: hello_world.handler
-      CodeUri: lambda/hello_world.py
+      Handler: page_renderer.handler
+      CodeUri: lambda/page_renderer.py
       Policies: AWSLambdaBasicExecutionRole
+      Layers:
+        - !Ref BrwyattStaticLayer
       Events:
         ApiEventSource:
           Type: Api
           Properties:
             RestApiId: !Ref BrwyattWeb
-            Path: /
+            Path: '/{proxy+}'
             Method: GET
 
 Outputs:

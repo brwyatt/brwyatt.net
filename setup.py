@@ -17,5 +17,7 @@ setup(
     entry_points={},
     install_requires=[
         'boto3',
+        'botocore',
+        'Jinja2',
     ]
 )
