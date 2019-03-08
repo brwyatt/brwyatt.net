@@ -16,7 +16,8 @@ def handler(event, context):
     if event['path'] in routes:
         log.debug('Path found in route list, rendering.')
         try:
-            return render_page(**routes[event['path']]())
+            return render_page(
+                **routes[event['path']](event=event), event=event)
         except Exception as e:
             log.critical('Unexpected exception rendering route "{}": {} - {}'
                          .format(event['path'], e.__class__.__name__, str(e)))

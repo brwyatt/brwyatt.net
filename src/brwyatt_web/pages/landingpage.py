@@ -1,4 +1,4 @@
-def get_content():
+def get_content(event={}):
     return {
         'title': 'Home',
         'content': (
