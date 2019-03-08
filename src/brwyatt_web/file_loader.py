@@ -28,7 +28,7 @@ def load_static_asset(asset_type, file_name):
         errmsg = 'Asset directory is outside static assets directory'
         log.error(errmsg)
         raise PathSecurityException(errmsg)
-    elif not os.pat.isdir(asset_dir):
+    elif not os.path.isdir(asset_dir):
         errmsg = 'Asset type "{}" is invalid or does not exist'.format(
             asset_type)
         log.error(errmsg)
@@ -40,7 +40,7 @@ def load_static_asset(asset_type, file_name):
         errmsg = 'Requested asset is outside of expected asset directory'
         log.error(errmsg)
         raise PathSecurityException(errmsg)
-    elif not os.pat.isfile(file_path):
+    elif not os.path.isfile(file_path):
         errmsg = 'Asset file could not be found'
         log.error(errmsg)
         raise FileNotFoundException(errmsg)
