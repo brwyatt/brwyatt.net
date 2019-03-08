@@ -1,3 +1,4 @@
+from datetime import datetime
 import logging
 
 from jinja2 import Environment, PackageLoader, select_autoescape
@@ -13,6 +14,8 @@ templates = Environment(
     loader=PackageLoader(__name__, 'templates'),
     autoescape=select_autoescape(['html', 'xml'])
 )
+
+templates.globals['now'] = datetime.utcnow
 
 
 def render_page(path, format='html', event={}, status_msg=None):
