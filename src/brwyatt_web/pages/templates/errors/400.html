@@ -1,0 +1,11 @@
+{% extends base %}
+{% block title %}Error: 400{% endblock %}
+{% block content %}
+<p>
+{% if status_msg is not none %}
+  {{ status_msg }}
+{% else %}
+  Request invalid
+{% endif %}
+</p>
+{% endblock %}

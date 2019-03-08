@@ -1,35 +1,41 @@
-from jinja2 import Template
+import logging
+
+from jinja2 import Environment, PackageLoader, select_autoescape
+
+from brwyatt_web.exceptions import (
+    FileNotFoundException, InvalidClientRequestException)
+from brwyatt_web.pages.routes import routes
 
 
-def render_page(title='Untitled', content='No Content', status=200, event={}):
-    page_template = Template(
-        '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"'
-        '  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'
-        '<html xmlns="http://www.w3.org/1999/xhtml">'
-        '  <head>'
-        '    <title>brwyatt.net - {{title}}</title>'
-        '  </head>'
-        '  <body>'
-        '    <h1>brwyatt.net</h1>'
-        '    <h2>{{title}}</h2>'
-        '    <div>{{content}}</div>'
-        '  </body>'
-        '</html>'
-    )
+log = logging.getLogger(__name__)
 
-    return {
-        'statusCode': str(status),
+templates = Environment(
+    loader=PackageLoader(__name__, 'templates'),
+    autoescape=select_autoescape(['html', 'xml'])
+)
+
+
+def render_page(path, format='html', event={}, status_msg=None):
+    resp = {
+        'statusCode': '200',
         'headers': {
-            'Content-Type': 'text/html',
-        },
-        'body': page_template.render(title=title, content=content)
+        }
     }
 
+    if path not in routes:
+        raise FileNotFoundException('Invalid route')
 
-def render_error_page(status, errmsg, event={}):
-    return render_page(
-        title=f'ERROR: {status}',
-        content=errmsg,
-        status=status,
-        event=event,
-    )
+    page_template = templates.get_template(routes[path])
+
+    if format.lower() == 'html':
+        base = 'base.html'
+        resp['headers']['Content-Type'] = 'text/html',
+    elif format.lower() == 'json':
+        base = 'base.json'
+        resp['headers']['Content-Type'] = 'application/json',
+    else:
+        raise InvalidClientRequestException(f'Unsupported format "{format}"')
+
+    resp['body'] = page_template.render(event=event, base=base,
+                                        status_msg=status_msg)
+    return resp

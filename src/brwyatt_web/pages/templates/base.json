@@ -1,0 +1,4 @@
+{
+  "title": "{% block title %}{% endblock %}",
+  "content": "{% block content %}{% endblock %}"
+}

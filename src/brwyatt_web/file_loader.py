@@ -1,16 +1,10 @@
 import logging
 import os
 
+from brwyatt_web.exceptions import FileNotFoundException, PathSecurityException
+
 
 log = logging.getLogger(__name__)
-
-
-class PathSecurityException(Exception):
-    pass
-
-
-class FileNotFoundException(Exception):
-    pass
 
 
 def load_static_asset(asset_type, file_name):

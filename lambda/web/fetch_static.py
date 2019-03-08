@@ -1,6 +1,6 @@
-from brwyatt_web.logging import setup_logging
+from brwyatt_web.exceptions import FileNotFoundException, PathSecurityException
 from brwyatt_web.file_loader import load_static_asset
-from brwyatt_web.file_loader import FileNotFoundException, PathSecurityException
+from brwyatt_web.logging import setup_logging
 from brwyatt_web.pages.errors import error400, error404, error500
 
 

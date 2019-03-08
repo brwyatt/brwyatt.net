@@ -1,6 +1,6 @@
-from brwyatt_web.pages.landingpage import get_content as landingpage
-
-
 routes = {
-    '/': landingpage
+    '/': 'landingpage.html',
+    '/errors/400': 'errors/400.html',
+    '/errors/404': 'errors/404.html',
+    '/errors/500': 'errors/500.html',
 }

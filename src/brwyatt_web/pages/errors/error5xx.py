@@ -1,5 +1,13 @@
-from brwyatt_web.pages import render_error_page
+import logging
+
+from brwyatt_web.pages import render_page
+
+
+log = logging.getLogger(__name__)
 
 
 def error500(errmsg='Server Error'):
-    return render_error_page('500', errmsg)
+    log.info('Rendering 500!')
+    res = render_page('/errors/500', status_msg=errmsg)
+    res['statusCode'] = 500
+    return res

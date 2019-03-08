@@ -1,0 +1,11 @@
+{% extends base %}
+{% block title %}Error: 404{% endblock %}
+{% block content %}
+<p>
+{% if status_msg is not none %}
+  {{ status_msg }}
+{% else %}
+  File not found
+{% endif %}
+</p>
+{% endblock %}
