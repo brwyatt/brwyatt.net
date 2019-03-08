@@ -3,24 +3,18 @@ version: 0.1
 phases:
   install:
     commands:
-      - echo "nothing to do in install"
+      - echo "Nothing to install"
   pre_build:
     commands:
-      - echo "Installing dependencies - `pwd`"
-      - mkdir -p build/python
-      - grep -ivEe '^boto(3|core)[=<>]' requirements.txt | pip install -r /dev/stdin --target build/python
-      - pip install --no-dependencies --target build/python .
-      - echo "dependencies install completed `date`"
-      - echo "Building static"
-      - mkdir -p staticbuild
-      - cp -r static staticbuild/
+      - echo "Running pre-build"
+      - ./bin/build.sh
   build:
     commands:
-      - echo "Starting build `date` in `pwd`"
+      - echo "Starting CloudFormation package build"
       - aws cloudformation package --template-file app-sam.yaml --s3-bucket $BUILD_OUTPUT_BUCKET --output-template-file app-output_sam.yaml
   post_build:
     commands:
-      - echo "build completed on `date`"
+      - echo "Build completed"
 
 artifacts:
   files:

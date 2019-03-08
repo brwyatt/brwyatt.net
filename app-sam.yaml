@@ -98,6 +98,16 @@ Resources:
       CompatibleRuntimes:
         - python3.7
 
+  BrwyattTemplatesLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: !Sub 'BrwyattStatic-${Stage}'
+      Description: Jinja2 Templates for brwyatt.net
+      ContentUri: templatesbuild/
+      RetentionPolicy: Delete
+      CompatibleRuntimes:
+        - python3.7
+
   ApiTime:
     Type: AWS::Serverless::Function
     Properties:
@@ -118,6 +128,11 @@ Resources:
       Handler: page_renderer.handler
       CodeUri: lambda/web/page_renderer.py
       Policies: AWSLambdaBasicExecutionRole
+      Layers:
+        - !Ref BrwyattTemplatesLayer
+      Environment:
+        Variables:
+          TEMPLATE_PATH: '/opt/templates'
       Events:
         root:
           Type: Api

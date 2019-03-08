@@ -1,7 +1,8 @@
 from datetime import datetime
 import logging
+import os
 
-from jinja2 import Environment, PackageLoader, select_autoescape
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from brwyatt_web.exceptions import (
     FileNotFoundException, InvalidClientRequestException)
@@ -10,8 +11,10 @@ from brwyatt_web.pages.routes import routes
 
 log = logging.getLogger(__name__)
 
+template_path = os.environ.get('TEMPLATE_PATH',
+                               os.path.join(os.getcwd(), 'templates'))
 templates = Environment(
-    loader=PackageLoader(__name__, 'templates'),
+    loader=FileSystemLoader(template_path),
     autoescape=select_autoescape(['html', 'xml'])
 )
 

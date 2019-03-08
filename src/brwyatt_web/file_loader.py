@@ -6,14 +6,15 @@ from brwyatt_web.exceptions import FileNotFoundException, PathSecurityException
 
 log = logging.getLogger(__name__)
 
+static_path = os.environ.get('STATIC_PATH',
+                             os.path.join(os.getcwd(), 'static'))
+
 
 def load_static_asset(asset_type, file_name):
     """
     """
     log.info('Loading static asset: {0}: {1}'.format(asset_type, file_name))
 
-    static_path = os.environ.get('STATIC_PATH',
-                                 os.path.join(os.getcwd(), 'static'))
     log.debug('static_path = {}'.format(static_path))
 
     asset_dir = os.path.abspath(os.path.join(static_path, asset_type))
