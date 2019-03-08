@@ -1,7 +1,7 @@
 from brwyatt_web.logging import setup_logging
-from brwyatt_web.web import render_page
-from brwyatt_web.web.errors import error404, error500
-from brwyatt_web.web.routes import routes
+from brwyatt_web.pages import render_page
+from brwyatt_web.pages.errors import error404, error500
+from brwyatt_web.pages.routes import routes
 
 
 log = setup_logging()

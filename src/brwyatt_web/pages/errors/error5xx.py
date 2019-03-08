@@ -1,4 +1,4 @@
-from brwyatt_web.web import render_error_page
+from brwyatt_web.pages import render_error_page
 
 
 def error500(errmsg='Server Error'):
