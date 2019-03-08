@@ -139,5 +139,10 @@ Outputs:
     Value: !Sub 'https://${ApiDomain}/'
     Export:
       Name: !Sub 'ApiUrl-${Stage}'
+  WebUrl:
+    Description: URL for application UI
+    Value: !Sub 'https://${WebDomain}/'
+    Export:
+      Name: !Sub 'WebUrl-${Stage}'
 
 # vim: ts=2 sts=2 sw=2 expandtab
