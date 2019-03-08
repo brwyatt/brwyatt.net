@@ -84,7 +84,7 @@ Resources:
     Properties:
       LayerName: !Sub 'BrwyattStatic-${Stage}'
       Description: Static code assets for brwyatt.net - CSS, JS
-      ContentUri: static/
+      ContentUri: staticbuild/
       RetentionPolicy: Delete
       CompatibleRuntimes:
         - python3.7

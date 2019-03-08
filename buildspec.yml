@@ -11,6 +11,9 @@ phases:
       - grep -ivEe '^boto(3|core)[=<>]' requirements.txt | pip install -r /dev/stdin --target build/python
       - pip install --no-dependencies --target build/python .
       - echo "dependencies install completed `date`"
+      - echo "Building static"
+      - mkdir -p staticbuild
+      - cp -r static staticbuild/
   build:
     commands:
       - echo "Starting build `date` in `pwd`"
