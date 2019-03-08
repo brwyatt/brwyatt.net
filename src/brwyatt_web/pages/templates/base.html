@@ -1,14 +1,40 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-		<title>brwyatt.net - {% block title %}{% endblock %}</title>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-33472085-2"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		
+		  gtag('config', 'UA-33472085-2');
+		</script>
+
+    <title>brwyatt.net - {% block title %}{% endblock %}</title>
+
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-2946026056360727",
+              enable_page_level_ads: true
+         });
+    </script>
   </head>
   <body>
-    <h1>brwyatt.net</h1>
-		<h2 id='pagetitle'>{{ self.title() }}</h2>
-		<div id='pagecontent'>
-			{% block content %}Undefined{% endblock %}
+		<div id='viewport'>
+      <div id='siteheader'>
+        <h1>brwyatt.net</h1>
+      </div>
+		  <div id='sitecontent'>
+        <h2 id='pagetitle'>{{ self.title() }}</h2>
+        <div id='pagecontent'>
+          {% block content %}Undefined{% endblock %}
+        </div>
+		  </div>
+			<div id='footer'>
+				© {{ now().year }} Bryan Wyatt
+			</div>
 		</div>
   </body>
 </html>
