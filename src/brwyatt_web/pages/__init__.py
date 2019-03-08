@@ -25,7 +25,7 @@ def render_page(path, format='html', event={}, status_msg=None):
     }
 
     if path not in routes:
-        log.error('No route found for "{path}"')
+        log.error(f'No route found for "{path}"')
         raise FileNotFoundException('Invalid route')
 
     page_template = templates.get_template(routes[path])
