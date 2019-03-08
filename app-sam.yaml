@@ -156,7 +156,7 @@ Resources:
         - !Ref BrwyattStaticLayer
       Environment:
         Variables:
-          STATIC_PATH: '/opt'
+          STATIC_PATH: '/opt/static'
       Events:
         css:
           Type: Api
