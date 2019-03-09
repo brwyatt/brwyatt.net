@@ -1,7 +1,9 @@
 <ul id="nav">
+  {% set browser_path = event.get('path', '') -%}
   {% for name, path in nav_items.items() -%}
-  <li{% if event.get('path', '').startswith(path) %} class="sel"{% endif %}>
-    <a href="{{path}}" onclick="spa_nav({{path}})">{{name}}</a>
+  {# pre-select the menu item if we're on the page or a sub page, but exclude / from sub pages -#}
+  <li{% if browser_path == path or (path != '/' and browser_path.startswith(path))  %} class="sel"{% endif %}>
+    <a href="{{path}}" onclick="spa_nav('{{path}}')">{{name}}</a>
   </li>
   {% endfor -%}
 </ul>
