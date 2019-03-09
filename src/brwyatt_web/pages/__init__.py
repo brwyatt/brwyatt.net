@@ -17,6 +17,8 @@ gtag_ids = {
     'Prod': 'UA-33472085-2'
 }
 
+stage = os.environ.get('STAGE', 'Alpha')
+
 template_path = os.environ.get('TEMPLATE_PATH',
                                os.path.join(os.getcwd(), 'templates'))
 templates = Environment(
@@ -32,8 +34,6 @@ def render_page(path, format='html', event={}, status_msg=None):
 
     if event is None:
         event = {}
-
-    stage = event.get('stageVariables', {}).get('Stage', 'Alpha')
 
     query_params = event.get('queryStringParameters', {})
     if query_params is None:

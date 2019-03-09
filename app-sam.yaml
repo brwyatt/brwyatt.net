@@ -9,6 +9,7 @@ Globals:
     Environment:
       Variables:
         LOGLEVEL: !Ref LogLevel
+        STAGE: !Ref Stage
 
 Parameters:
   Stage:
