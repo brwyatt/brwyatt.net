@@ -9,6 +9,11 @@ div#viewpane {
 	width: 1000px;
 }
 
+div#siteheader {
+	/* https://cssgradient.io/ */
+	background-image: radial-gradient(circle farthest-corner at 0% 0%, rgba(0,181,255,1) 0%, rgba(1,140,221,1) 7%, rgba(2,99,189,1) 22%, rgba(3,50,151,1) 51%, rgba(5,0,111,1) 90%, rgba(0,0,0,1) 100%);
+}
+
 div#siteheader h1 {
   text-align: center;
 }
