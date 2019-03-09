@@ -28,18 +28,20 @@ div#navbar ul#nav li {
   margin: 0px;
 }
 
+div#navbar ul#nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow:  2px 2px 2px var(--palette-background);
+}
+
 div#navbar ul#nav a:link,
 div#navbar ul#nav a:visited {
-  color: white;
   background: var(--gradient-stop3);
   padding: 20px 40px 4px 10px;
   float: left;
   width: auto;
   border-right: 1px solid var(--palette-background);
-  text-decoration: none;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-shadow:  2px 2px 2px var(--palette-background);
 }
 
 div#navbar ul#nav li: first-child a {
@@ -48,14 +50,11 @@ div#navbar ul#nav li: first-child a {
 
 div#navbar ul#nav a:hover,
 div#navbar ul#nav a:focus {
-  color: white;
   background: var(--nav-hover);
 }
 
 div#navbar ul#nav li.sel a {
   background: var(--nav-current);
-  color: white;
-  text-shadow: none;
 }
 
 div#navbar ul#nav li.sel a:hover {
