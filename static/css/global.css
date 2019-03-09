@@ -1,7 +1,16 @@
 :root {
   --palette-background: rgba(17,17,17,1);
+  --gradient-start: rgba(255,255,255,1) 0%;
+  --gradient-stop1: rgba(0,181,255,1) 3%;
+  --gradient-stop2: rgba(1,140,221,1) 5%;
+  --gradient-stop3: rgba(2,99,189,1) 20%;
+  --gradient-stop4: rgba(3,50,151,1) 60%;
+  --gradient-end: var(--palette-background) 99%;
+  --gradient-values: var(--gradient-start), var(--gradient-stop1), var(--gradient-stop2), var(--gradient-stop3), var(--gradient-stop4), var(--gradient-end);
   /* https://cssgradient.io/ */
-  --blue-gradient: radial-gradient(circle farthest-corner at 0% 0%, rgba(255,255,255,1) 0%, rgba(0,181,255,1) 3%, rgba(1,140,221,1) 5%, rgba(2,99,189,1) 20%, rgba(3,50,151,1) 60%, var(--palette-background) 99%);
+  --blue-radial-gradient-top-left: radial-gradient(circle farthest-corner at 0% 0%, var(--gradient-values));
+  --blue-radial-gradient-top-center: radial-gradient(circle farthest-corner at 50% 0%, var(--gradient-values));
+  --blue-radial-gradient-center-left: radial-gradient(circle farthest-corner at 0% 50%, var(--gradient-values));
 }
 
 body {
@@ -24,7 +33,7 @@ div#sitecontent {
 }
 
 div#siteheader {
-  background-image: var(--blue-gradient);
+  background-image: var(--blue-radial-gradient-top-left);
   padding: 10px;
   font-size: 35px;
   font-weight: bold;

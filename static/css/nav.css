@@ -1,5 +1,6 @@
 :root {
-  --nav-hover: var(--blue-gradient)
+  --nav-hover: var(--blue-radial-gradient-top-center);
+  --nav-current: var(--blue-radial-gradient-center-left);
 }
 
 div#navbar {
@@ -30,13 +31,13 @@ div#navbar ul#nav li {
 div#navbar ul#nav a:link,
 div#navbar ul#nav a:visited {
   color: white;
-  background: rgba(3,50,151,1);
+  background: var(--gradient-stop3);
   padding: 20px 40px 4px 10px;
   float: left;
   width: auto;
   border-right: 1px solid var(--palette-background);
   text-decoration: none;
-  font: bold 1em/1em;
+  font-weight: bold;
   text-transform: uppercase;
   text-shadow:  2px 2px 2px var(--palette-background);
 }
@@ -52,7 +53,7 @@ div#navbar ul#nav a:focus {
 }
 
 div#navbar ul#nav li.sel a {
-  background: var(--nav-hover);
+  background: var(--nav-current);
   color: white;
   text-shadow: none;
 }
@@ -62,7 +63,7 @@ div#navbar ul#nav li.sel a:hover {
 }
 
 div#navbar ul#nav a:active {
-  background: var(--nav-hover);
+  background: var(--nav-current);
   color: white;
 }
 
