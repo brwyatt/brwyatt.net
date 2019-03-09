@@ -9,8 +9,9 @@ phases:
       - echo "Running pre-build"
       - which sh
       - which bash
-      - which ./bin/build.sh
-      - sh bin/build.sh
+      - pwd
+      - ls
+      - bash bin/build.sh
   build:
     commands:
       - echo "Starting CloudFormation package build"
