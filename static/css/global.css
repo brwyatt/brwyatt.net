@@ -12,4 +12,10 @@ div#siteheader h1 {
   text-align: center;
 }
 
+div#footer h1 {
+  text-align: center;
+	font-weight: lighter;
+	font-size: smaller;
+}
+
 /* vim: set ts=2 sw=2 sts=2: */
