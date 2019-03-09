@@ -7,10 +7,6 @@ phases:
   pre_build:
     commands:
       - echo "Running pre-build"
-      - which sh
-      - which bash
-      - pwd
-      - ls
       - bash bin/build.sh
   build:
     commands:
