@@ -9,15 +9,19 @@
       gtag('js', new Date());
       gtag('config', '{{gtag_id}}');
     </script>
+    <!-- End GTag -->
 
     <title>Bryan Wyatt - {% block title %}{% endblock %}</title>
 
+    <!-- Site CSS -->
     <link rel="stylesheet" href="/css/global.css"/>
     <link rel="stylesheet" href="/css/nav.css"/>
     {% if style_debug %}
       <link rel="stylesheet" href="/css/debug.css"/>
     {%- endif %}
+    <!-- End Site CSS -->
 
+    <!-- Google Ads -->
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
          (adsbygoogle = window.adsbygoogle || []).push({
@@ -25,6 +29,10 @@
               enable_page_level_ads: true
          });
     </script>
+    <!-- End Google Ads -->
+
+    <!-- Site JS -->
+    <!-- End Site JS -->
   </head>
   <body>
     <div id='viewpane'>
