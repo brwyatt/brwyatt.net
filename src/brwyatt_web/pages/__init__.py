@@ -11,7 +11,7 @@ from brwyatt_web.pages.routes import routes
 
 log = logging.getLogger(__name__)
 
-ga_tracking_ids = {
+gtag_ids = {
     'Beta': 'UA-33472085-6',
     'Gamma': 'UA-33472085-7',
     'Prod': 'UA-33472085-2'
@@ -29,6 +29,23 @@ templates.globals['now'] = datetime.utcnow
 
 def render_page(path, format='html', event={}, status_msg=None):
     log.info(f'Rendering page for "{path}" in "{format}"')
+
+    stage = event.get('stageVariables', {}).get('Stage', 'Alpha')
+
+    query_params = event.get('queryStringParameters', {})
+    if query_params is None:
+        query_params = {}
+
+    template_vars = {
+        'event': event,
+        'gtag_id': gtag_ids.get(stage, gtag_ids.get('Beta', 'UA-xxxxxxxx-x')),
+        'stage': stage,
+        'status_msg': status_msg,
+        'style_debug': stage in ['Beta', 'Alpha'] or query_params.get(
+            'style_debug', False)
+    }
+
+    log.debug(f'Template Vars = {template_vars}')
 
     resp = {
         'statusCode': '200',
@@ -52,9 +69,6 @@ def render_page(path, format='html', event={}, status_msg=None):
         log.error('Unsupported format "{format}"')
         raise InvalidClientRequestException(f'Unsupported format "{format}"')
 
-    resp['body'] = page_template.render(
-        event=event, base=base, status_msg=status_msg,
-        ga_code=ga_tracking_ids.get(event['stageVariables']['Stage'],
-                                    ga_tracking_ids.get('Beta', 'xxxx')))
+    resp['body'] = page_template.render(base=base, **template_vars)
     log.debug(f'Page rendered as:\n{resp["body"]}')
     return resp
