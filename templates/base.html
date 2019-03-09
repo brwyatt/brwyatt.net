@@ -38,6 +38,13 @@
   <body>
     <div id='viewpane'>
       <div id='siteheader'>
+        {% if stage == 'Alpha' -%}
+        <span style="float: right; color: darkred;">ALPHA</span>
+        {% elif stage == 'Beta' -%}
+        <span style="float: right; color: darkgreen;">BETA</span>
+        {% elif stage == 'Gamma' -%}
+        <span style="float: right; color: indigo;">GAMMA</span>
+        {% endif -%}
         <h1>Bryan Wyatt</h1>
       </div>
       <div id='navbar'>
