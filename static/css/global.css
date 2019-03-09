@@ -35,12 +35,13 @@ div#sitecontent {
 div#siteheader {
   background-image: var(--blue-radial-gradient-top-left);
   padding: 10px;
-  font-size: 35px;
-  font-weight: bold;
 }
 
 div#siteheader h1 {
+  color: white;
   text-align: left;
+  text-shadow:  2px 2px 2px var(--palette-background);
+  font-weight: bold;
 }
 
 div#footer {
