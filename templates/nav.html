@@ -1,6 +1,8 @@
 <ul id="nav">
   {% for name, path in nav_items.items() -%}
-  <li{% if event.get('path', '').startswith(path) %} class="sel"{% endif %}><a href="{{path}}">{{name}}</a></li>
+  <li{% if event.get('path', '').startswith(path) %} class="sel"{% endif %}>
+    <a href="{{path}}" onclick="spa_nav(this.href)">{{name}}</a>
+  </li>
   {% endfor -%}
 </ul>
 {# vim: set ts=2 sw=2 sts=2 expandtab: -#}
