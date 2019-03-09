@@ -42,7 +42,12 @@ def render_page(path, format='html', event={}, status_msg=None):
     template_vars = {
         'event': event,
         'gtag_id': gtag_ids.get(stage, gtag_ids.get('Beta', 'UA-xxxxxxxx-x')),
-        'nav_items': {'Home': '/', 'About': '/about', 'Contact': '/contact'},
+        'nav_items': [
+            ('Home', '/'),
+            ('Projects', '/projects'),
+            ('About', '/about'),
+            ('Contact', '/contact')
+        ],
         'stage': stage,
         'status_msg': status_msg,
         'style_debug': stage in ['Beta', 'Alpha'] or query_params.get(
