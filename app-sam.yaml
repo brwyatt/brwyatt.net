@@ -118,6 +118,8 @@ Resources:
       Handler: get_pagecontent.handler
       CodeUri: lambda/api/get_pagecontent.py
       Policies: AWSLambdaBasicExecutionRole
+      Layers:
+        - !Ref BrwyattTemplatesLayer
       Environment:
         Variables:
           TEMPLATE_PATH: '/opt/templates'
