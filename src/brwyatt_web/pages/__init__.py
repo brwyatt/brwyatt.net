@@ -30,6 +30,9 @@ templates.globals['now'] = datetime.utcnow
 def render_page(path, format='html', event={}, status_msg=None):
     log.info(f'Rendering page for "{path}" in "{format}"')
 
+    if event is None:
+        event = {}
+
     stage = event.get('stageVariables', {}).get('Stage', 'Alpha')
 
     query_params = event.get('queryStringParameters', {})

@@ -17,12 +17,12 @@ def handler(event, context):
         resp = render_page(event['path'], format='html', event=event)
     except FileNotFoundException as e:
         log.error('Caught 404 while rendering "{}"'.format(event['path']))
-        resp = error404()
+        resp = error404(event=event)
     except Exception as e:
         log.critical('Unexpected exception rendering route "{}": {} - {}'
                      .format(event['path'], e.__class__.__name__, str(e)))
         try:
-            resp = error500()
+            resp = error500(event=event)
         except Exception as e:
             log.critical('Failed to process 500 error, falling back to plain '
                          '500. {}: {}'.format(e.__class__.__name__, str(e)))

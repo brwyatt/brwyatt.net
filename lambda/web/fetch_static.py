@@ -21,7 +21,7 @@ def handler(event, context):
         content_type = 'application/javascript'
     else:
         log.error('Got unrecognized resource: "{}"'.format(event['resource']))
-        return error400()
+        return error400(event=event)
 
     file_name = event['pathParameters']['resource']
 
@@ -39,12 +39,12 @@ def handler(event, context):
     except FileNotFoundException as e:
         log.error('Unable to find resource "{}/{}": {}'
                   .format(asset_type, file_name, str(e)))
-        return error404()
+        return error404(event=event)
     except PathSecurityException as e:
         log.error('Exception fetching resource "{}/{}": {}'
                   .format(asset_type, file_name, str(e)))
-        return error400()
+        return error400(event=event)
     except Exception as e:
         log.critical('Unexpected exception fetching resource "{}/{}": {}'
                      .format(asset_type, file_name, str(e)))
-        return error500()
+        return error500(event=event)
