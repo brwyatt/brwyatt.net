@@ -1,10 +1,11 @@
 div {
 	border: 2px solid;
+	padding: 4px;
 }
 
 div#viewport {
 	margin: auto;
-	width: 800px;
+	width: 1000px;
 }
 
 div#siteheader h1 {
