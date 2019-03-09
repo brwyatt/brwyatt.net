@@ -2,6 +2,11 @@ body {
   background-color: #111111;
 }
 
+div {
+  padding: 1px;
+  margin: 1px;
+}
+
 div#viewpane {
   margin: auto;
   width: 1000px;
