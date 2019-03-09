@@ -50,16 +50,12 @@ div#navbar ul#nav a:focus {
   background: var(--nav-hover);
 }
 
-div#navbar ul#nav li.sel a,
-div#navbar ul#nav li.sel a,
 div#navbar ul#nav li.sel a {
   background: var(--nav-hover);
   color: white;
   text-shadow: none;
 }
 
-div#navbar ul#nav li.sel a:hover,
-div#navbar ul#nav li.sel a:hover,
 div#navbar ul#nav li.sel a:hover {
   background: var(--nav-hover);
 }
