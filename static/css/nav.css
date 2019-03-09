@@ -1,18 +1,71 @@
-#home #nav-home a,
-#about #nav-about a,
-#contact #nav-contact a {
-	background:#e35a00;
-	color:#fff;
-	text-shadow:none;
+:root {
+  --nav-hover: radial-gradient(circle farthest-corner at 0% 0%, rgba(255,255,255,1) 0%, rgba(0,181,255,1) 3%, rgba(1,140,221,1) 5%, rgba(2,99,189,1) 20%, rgba(3,50,151,1) 60%, rgba(17,17,17,1) 99%);
 }
 
-#home #nav-home a:hover,
-#about #nav-about a:hover,
-#contact #nav-contact a:hover {
-	background:#e35a00;
+div#navbar {
+  margin: 0px;
+  margin-left: 1px;
+  padding: 0px;
+  background: #111111;
 }
 
-#nav a:active {
-	background:#e35a00;
-	color:#fff;
+div#navbar ul#nav {
+  margin: 0px;
+  padding: 0px;
+  float: left;
+	width: 100%;
+  border: 1px solid #111111;
+	border-width: 1px 0;
+  background: #111111;
 }
+
+div#navbar ul#nav li {
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+
+div#navbar ul#nav a:link,
+div#navbar ul#nav a:visited {
+  color: #fff;
+  background: rgba(3,50,151,1);
+  padding: 20px 40px 4px 10px;
+  float: left;
+	width: auto;
+  border-right: 1px solid #111111;
+  text-decoration: none;
+	font: bold 1em/1em Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	text-shadow:  2px 2px 2px #111111;
+}
+
+div#navbar ul#nav li: first-child a {
+	border-left: 1px solid #FFFFFF;
+}
+
+div#navbar ul#nav a:hover,
+div#navbar ul#nav a:focus {
+	color: #fff;
+  background: var(--nav-hover);
+}
+
+div#navbar ul#nav li a,
+div#navbar ul#nav li a,
+div#navbar ul#nav li a {
+  background: var(--nav-hover);
+  color: #fff;
+  text-shadow: none;
+}
+
+div#navbar ul#nav li a:hover,
+div#navbar ul#nav li a:hover,
+div#navbar ul#nav li a:hover {
+  background: var(--nav-hover);
+}
+
+div#navbar ul#nav a:active {
+  background: var(--nav-hover);
+  color: #fff;
+}
+
+/* vim: set ts=2 sw=2 sts=2 expandtab: */
