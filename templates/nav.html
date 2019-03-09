@@ -1,7 +1,7 @@
 <ul id="nav">
   {% for name, path in nav_items.items() -%}
   <li{% if event.get('path', '').startswith(path) %} class="sel"{% endif %}>
-    <a href="{{path}}" onclick="spa_nav(this.href)">{{name}}</a>
+    <a href="{{path}}" onclick="spa_nav({{path}})">{{name}}</a>
   </li>
   {% endfor -%}
 </ul>
