@@ -22,8 +22,8 @@ div#navbar ul#nav {
 
 div#navbar ul#nav li {
   display: inline;
-  padding: 0;
-  margin: 0;
+  padding: 0px;
+  margin: 0px;
 }
 
 div#navbar ul#nav a:link,
