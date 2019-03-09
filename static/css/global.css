@@ -1,9 +1,10 @@
 div {
 	border: 2px solid;
 	padding: 4px;
+	margin: 1px;
 }
 
-div#viewport {
+div#viewpane {
 	margin: auto;
 	width: 1000px;
 }
@@ -12,7 +13,7 @@ div#siteheader h1 {
   text-align: center;
 }
 
-div#footer h1 {
+div#footer {
   text-align: center;
 	font-weight: lighter;
 	font-size: smaller;
