@@ -13,6 +13,7 @@
     <title>Bryan Wyatt - {% block title %}{% endblock %}</title>
 
     <link rel="stylesheet" href="/css/global.css"/>
+    <link rel="stylesheet" href="/css/nav.css"/>
     {% if style_debug %}
       <link rel="stylesheet" href="/css/debug.css"/>
     {%- endif %}
@@ -29,6 +30,13 @@
     <div id='viewpane'>
       <div id='siteheader'>
         <h1>Bryan Wyatt</h1>
+      </div>
+      <div id='navbar'>
+        <ul id="nav">
+          <li id="nav-home"><a href="/">Home</a></li>
+          <li id="nav-about"><a href="/about">About</a></li>
+          <li id="nav-contact"><a href="/contact">Contact</a></li>
+        </ul>
       </div>
       <div id='sitecontent'>
         <div id='pagetitle'>

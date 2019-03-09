@@ -1,0 +1,18 @@
+#home #nav-home a,
+#about #nav-about a,
+#contact #nav-contact a {
+	background:#e35a00;
+	color:#fff;
+	text-shadow:none;
+}
+
+#home #nav-home a:hover,
+#about #nav-about a:hover,
+#contact #nav-contact a:hover {
+	background:#e35a00;
+}
+
+#nav a:active {
+	background:#e35a00;
+	color:#fff;
+}
