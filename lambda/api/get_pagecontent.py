@@ -1,5 +1,4 @@
-from datetime import datetime
-from json import dumps
+import json
 
 from brwyatt_web.logging import setup_logging
 
