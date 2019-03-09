@@ -1,6 +1,4 @@
 function spa_nav(destination) {
-  alert(destination);
-
   return true;
 }
 
