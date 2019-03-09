@@ -11,6 +11,12 @@ from brwyatt_web.pages.routes import routes
 
 log = logging.getLogger(__name__)
 
+ga_tracking_ids = {
+    'Beta': 'UA-33472085-6',
+    'Gamma': 'UA-33472085-7',
+    'Prod': 'UA-33472085-2'
+}
+
 template_path = os.environ.get('TEMPLATE_PATH',
                                os.path.join(os.getcwd(), 'templates'))
 templates = Environment(
@@ -46,7 +52,9 @@ def render_page(path, format='html', event={}, status_msg=None):
         log.error('Unsupported format "{format}"')
         raise InvalidClientRequestException(f'Unsupported format "{format}"')
 
-    resp['body'] = page_template.render(event=event, base=base,
-                                        status_msg=status_msg)
+    resp['body'] = page_template.render(
+        event=event, base=base, status_msg=status_msg,
+        ga_code=ga_tracking_ids.get(event['stageVariables']['Stage'],
+                                    ga_tracking_ids.get('Beta', 'xxxx')))
     log.debug(f'Page rendered as:\n{resp["body"]}')
     return resp
