@@ -115,9 +115,12 @@ Resources:
   PageContent:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: get_time.handler
+      Handler: get_pagecontent.handler
       CodeUri: lambda/api/get_pagecontent.py
       Policies: AWSLambdaBasicExecutionRole
+      Environment:
+        Variables:
+          TEMPLATE_PATH: '/opt/templates'
       Events:
         PageContent:
           Type: Api
