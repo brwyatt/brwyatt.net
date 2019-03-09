@@ -66,6 +66,9 @@ Resources:
     Properties:
       Name: !Sub 'Brwyatt-API-${Stage}'
       StageName: !Ref Stage
+      Cors:
+        AllowMethods: "'GET,OPTIONS'"
+        AllowOrigin: !Sub "'https://${WebDomain}'"
       Variables:
         Stage: !Ref Stage
         HostName: !Ref ApiDomain
@@ -109,18 +112,18 @@ Resources:
       CompatibleRuntimes:
         - python3.7
 
-  ApiTime:
+  PageContent:
     Type: AWS::Serverless::Function
     Properties:
       Handler: get_time.handler
-      CodeUri: lambda/api/get_time.py
+      CodeUri: lambda/api/get_pagecontent.py
       Policies: AWSLambdaBasicExecutionRole
       Events:
-        ApiEventSource:
+        PageContent:
           Type: Api
           Properties:
             RestApiId: !Ref BrwyattApi
-            Path: /time
+            Path: /pages/content
             Method: GET
 
   RenderPage:
