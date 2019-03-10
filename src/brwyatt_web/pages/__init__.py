@@ -18,6 +18,8 @@ gtag_ids = {
 }
 
 stage = os.environ.get('STAGE', 'Alpha')
+stage_color = {'Alpha': 'darkred', 'Beta': 'darkgreen',
+               'Gamma': 'indigo'}.get(stage, 'lightblue')
 
 template_path = os.environ.get('TEMPLATE_PATH',
                                os.path.join(os.getcwd(), 'templates'))
@@ -42,6 +44,8 @@ def render_page(path, format='html', event={}, status_msg=None):
     template_vars = {
         'event': event,
         'gtag_id': gtag_ids.get(stage, gtag_ids.get('Beta', 'UA-xxxxxxxx-x')),
+        'hostname': event.get('stageVariables', {}).get('HostName',
+                                                        'beta.brwyatt.net'),
         'nav_items': [
             ('Home', '/'),
             ('Projects', '/projects'),
@@ -49,6 +53,7 @@ def render_page(path, format='html', event={}, status_msg=None):
             ('Contact', '/contact')
         ],
         'stage': stage,
+        'stage_color': stage_color,
         'status_msg': status_msg,
         'style_debug': stage in ['Beta', 'Alpha'] or query_params.get(
             'style_debug', False)
