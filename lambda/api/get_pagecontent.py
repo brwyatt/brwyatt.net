@@ -55,11 +55,11 @@ def handler(event, context):
             })
         }
 
-    resp['access-control-allow-methods'] = 'GET,OPTIONS'
+    resp['headers']['access-control-allow-methods'] = 'GET,OPTIONS'
     if stage == 'Beta':
-        resp['access-control-allow-origin'] = '*'
+        resp['headers']['access-control-allow-origin'] = '*'
     else:
-        resp['access-control-allow-origin'] = f'https://{webdomain}'
+        resp['headers']['access-control-allow-origin'] = f'https://{webdomain}'
 
     log.debug(f'sending response to client:\n{resp}')
     return resp
