@@ -52,6 +52,7 @@ def render_page(path, format='html', event={}, status_msg=None):
             ('About', '/about'),
             ('Contact', '/contact')
         ],
+        'page_path': path,
         'stage': stage,
         'stage_color': stage_color,
         'status_msg': status_msg,
