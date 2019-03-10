@@ -1,4 +1,7 @@
+{%- set content -%}
+{% block content %}{% endblock %}
+{%- endset -%}
 {
   "title": "{% block title %}{% endblock %}",
-  "content": "{% block content %}{% endblock %}"
+  "content": {{ content|tojson() }}
 }
