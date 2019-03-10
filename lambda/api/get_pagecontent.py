@@ -1,4 +1,5 @@
 import json
+import os
 
 from brwyatt_web.exceptions import FileNotFoundException
 from brwyatt_web.logging import setup_logging
@@ -6,6 +7,10 @@ from brwyatt_web.pages import render_page
 
 
 log = setup_logging()
+
+stage = os.environ.get('STAGE', 'Alpha')
+
+webdomain = os.environ.get('WEB_DOMAIN', 'brwyatt.net')
 
 
 def handler(event, context):
@@ -49,6 +54,12 @@ def handler(event, context):
                 'Message': 'Missing "page" parameter'
             })
         }
+
+    resp['access-control-allow-methods'] = 'GET,OPTIONS'
+    if stage == 'Beta':
+        resp['access-control-allow-origin'] = '*'
+    else:
+        resp['access-control-allow-origin'] = f'https://{webdomain}'
 
     log.debug(f'sending response to client:\n{resp}')
     return resp

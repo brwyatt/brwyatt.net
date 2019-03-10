@@ -123,6 +123,7 @@ Resources:
       Environment:
         Variables:
           TEMPLATE_PATH: '/opt/templates'
+          WEB_DOMAIN: !Ref WebDomain
       Events:
         PageContent:
           Type: Api
