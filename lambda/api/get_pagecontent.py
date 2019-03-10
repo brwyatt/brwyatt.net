@@ -55,6 +55,9 @@ def handler(event, context):
             })
         }
 
+    if 'headers' not in resp:
+        resp['headers'] = {}
+
     resp['headers']['access-control-allow-methods'] = 'GET,OPTIONS'
     if stage == 'Beta':
         resp['headers']['access-control-allow-origin'] = '*'
