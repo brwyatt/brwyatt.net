@@ -3,5 +3,5 @@
 {%- endset -%}
 {
   "title": "{% block title %}{% endblock %}",
-  "content": {{ content|tojson() }}
+  "content": {{ content|tojson|safe }}
 }
