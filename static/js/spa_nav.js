@@ -18,8 +18,6 @@ function spa_nav(destination) {
       console.log(result.status);
     }
   });
-
-  return false; // Disable link following
 }
 
 /* vim: set ts=2 sw=2 sts=2 expandtab: */
