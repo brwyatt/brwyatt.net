@@ -157,20 +157,6 @@ Resources:
             Path: '/{proxy+}'
             Method: GET
 
-  DebugPage:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: debug.handler
-      CodeUri: lambda/web/debug.py
-      Policies: AWSLambdaBasicExecutionRole
-      Events:
-        test:
-          Type: Api
-          Properties:
-            RestApiId: !Ref BrwyattWeb
-            Path: '/test'
-            Method: GET
-
   StaticContent:
     Type: AWS::Serverless::Function
     Properties:
