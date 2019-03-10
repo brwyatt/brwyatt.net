@@ -6,5 +6,6 @@
 {%- endset -%}
 {
   "title": {{ title|tojson|safe }},
-  "content": {{ content|tojson|safe }}
+  "content": {{ content|tojson|safe }},
+  "path": {{ page_path|tojson|safe }}
 }
