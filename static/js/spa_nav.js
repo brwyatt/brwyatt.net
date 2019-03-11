@@ -21,19 +21,29 @@ function spa_nav(destination, updateHistory=true, forceReload=false) {
     xhr.abort()
   }
 
+  if(updateHistory) {
+    // Update browser history
+    window.history.pushState({
+      title: destination,
+      path: destination
+    }, destination, destination);
+  }
+
+  // Set selected page
+  $("#viewpane > #navbar > ul > li > a").each(function(){this.blur();});
+  $("#viewpane > #navbar > ul > li").removeClass("sel");
+  // Will need to fix this to match what's done in the Jinja2 template
+  $("#viewpane > #navbar > ul > li > a[href='"+destination+"']").parent().addClass("sel");
+
   set_loading_animation();
   xhr = $.ajax({
     url: api+"/pages/content?page="+destination,
     success: function(result) {
       update_page(result.path, result.title, result.content);
-
-      if(updateHistory) {
-        // Update browser history
-        window.history.pushState({
-          title: result.title,
-          path: result.path
-        }, browser_title, result.path);
-      }
+      window.history.replaceState({
+        title: result.title,
+        path: result.path
+      }, site_title + " - " + result.title, result.path);
     },
     error: function(result) {
       console.log('ERROR');
@@ -55,10 +65,6 @@ function set_loading_animation() {
     "  <div class=\"rect5\"></div>",
     "</div>"
   ].join('\n'));
-
-  // Reset the navbar selections
-  $("#viewpane > #navbar > ul > li > a").each(function(){this.blur();});
-  $("#viewpane > #navbar > ul > li").removeClass("sel");
 }
 
 function update_page(path, title, content) {
@@ -73,11 +79,6 @@ function update_page(path, title, content) {
   ga('set', 'page', path);
   ga('send', 'pageview');
 
-  // Set selected page
-  $("#viewpane > #navbar > ul > li > a").each(function(){this.blur();});
-  $("#viewpane > #navbar > ul > li").removeClass("sel");
-  // Will need to fix this to match what's done in the Jinja2 template
-  $("#viewpane > #navbar > ul > li > a[href='"+path+"']").parent().addClass("sel");
 }
 
 /* vim: set ts=2 sw=2 sts=2 expandtab: */
