@@ -37,7 +37,7 @@ div#navbar ul#nav a {
 
 div#navbar ul#nav a:link,
 div#navbar ul#nav a:visited {
-  background: var(--gradient-stop3);
+  background: var(--palette-blue);
   padding: 20px 40px 4px 10px;
   float: left;
   width: auto;
