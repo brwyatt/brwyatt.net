@@ -1,13 +1,21 @@
 // Add handler for the back button
 window.addEventListener('popstate', function(event) {
   if(event.state) {
-    spa_nav(event.state.path, false)
+    spa_nav(event.state.path, false, true)
   }
 }, false);
 
+// Prevent lingering "active" state
+$("#viewpane > #navbar > ul > li > a").each(function(){this.onmouseup = this.blur();});
+
 const site_title = "Bryan Wyatt"
 
-function spa_nav(destination, updateHistory=true) {
+function spa_nav(destination, updateHistory=true, forceReload=false) {
+  if(!forceReload && destination == window.location.pathname) {
+    // Don't do anything if we're already there!
+    return
+  }
+
   set_loading_animation();
   $.ajax({
     url: api+"/pages/content?page="+destination,
@@ -31,8 +39,8 @@ function spa_nav(destination, updateHistory=true) {
 
 function set_loading_animation() {
   // Set page content
-  $("head > title").html(site_title);
-  $("#sitecontent > #pagetitle > h2").html('Loading...');
+  $("head > title").html(site_title + " - Loading...");
+  $("#sitecontent > #pagetitle > h2").html("Loading...");
   $("#sitecontent > #pagecontent").html([
     "<div class=\"spinner\">",
     "  <div class=\"rect1\"></div>",
@@ -42,24 +50,29 @@ function set_loading_animation() {
     "  <div class=\"rect5\"></div>",
     "</div>"
   ].join('\n'));
+
+  // Reset the navbar selections
+  $("#viewpane > #navbar > ul > li > a").each(function(){this.blur();});
+  $("#viewpane > #navbar > ul > li").removeClass("sel");
 }
 
 function update_page(path, title, content) {
-      browser_title = site_title + " - " + title;
+  browser_title = site_title + " - " + title;
 
-      // Set page content
-      $("head > title").html(browser_title);
-      $("#sitecontent > #pagetitle > h2").html(title);
-      $("#sitecontent > #pagecontent").html(content);
+  // Set page content
+  $("head > title").html(browser_title);
+  $("#sitecontent > #pagetitle > h2").html(title);
+  $("#sitecontent > #pagecontent").html(content);
 
-      // Log the action in Google Analytics
-      ga('set', 'page', path);
-      ga('send', 'pageview');
+  // Log the action in Google Analytics
+  ga('set', 'page', path);
+  ga('send', 'pageview');
 
-      // Reset the navbar selections
-      $("#viewpane > #navbar > ul > li").removeClass("sel");
-      // Will need to fix this to match what's done in the Jinja2 template
-      $("#viewpane > #navbar > ul > li > a[href='"+path+"']").parent().addClass("sel");
+  // Set selected page
+  $("#viewpane > #navbar > ul > li > a").each(function(){this.blur();});
+  $("#viewpane > #navbar > ul > li").removeClass("sel");
+  // Will need to fix this to match what's done in the Jinja2 template
+  $("#viewpane > #navbar > ul > li > a[href='"+path+"']").parent().addClass("sel");
 }
 
 /* vim: set ts=2 sw=2 sts=2 expandtab: */
