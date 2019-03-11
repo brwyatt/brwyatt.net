@@ -1,44 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{gtag_id}}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '{{gtag_id}}');
-    </script>
-    <!-- End GTag -->
-
+    {% include "GoogleAnalytics.html" %}
     <title>Bryan Wyatt - {% block title %}{% endblock %}</title>
-
-    <!-- Site CSS -->
-    <link rel="stylesheet" href="/css/global.css"/>
-    <link rel="stylesheet" href="/css/nav.css"/>
-    {% if style_debug %}
-      <link rel="stylesheet" href="/css/debug.css"/>
-    {%- endif %}
-    <!-- End Site CSS -->
-
-    <!-- Google Ads -->
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "ca-pub-2946026056360727",
-              enable_page_level_ads: true
-         });
-    </script>
-    <!-- End Google Ads -->
-
-    <!-- Site JS -->
-    <script type="text/javascript">
-      const stage="{{stage}}";
-      const api="//{{apidomain}}";
-    </script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/js/spa_nav.js"/></script>
-    <!-- End Site JS -->
+    {% include "css.html" %}
+    {% include "GoogleAds.html" %}
+    {% include "js.html" %}
   </head>
   <body>
     <div id='viewpane'>
@@ -62,7 +29,7 @@
         </div>
       </div>
       <div id='footer'>
-        &copy; {{ now().year }} Bryan Wyatt
+        {% include "footer.html" %}
       </div>
     </div>
   </body>
