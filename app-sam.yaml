@@ -8,8 +8,10 @@ Globals:
       - !Ref BrwyattLayer
     Environment:
       Variables:
+        API_DOMAIN: !Ref ApiDomain
         LOGLEVEL: !Ref LogLevel
         STAGE: !Ref Stage
+        WEB_DOMAIN: !Ref WebDomain
 
 Parameters:
   Stage:
@@ -123,7 +125,6 @@ Resources:
       Environment:
         Variables:
           TEMPLATE_PATH: '/opt/templates'
-          WEB_DOMAIN: !Ref WebDomain
       Events:
         PageContent:
           Type: Api

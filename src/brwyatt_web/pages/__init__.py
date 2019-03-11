@@ -17,6 +17,8 @@ gtag_ids = {
     'Prod': 'UA-33472085-2'
 }
 
+webdomain = os.environ.get('WEB_DOMAIN', 'brwyatt.net')
+apidomain = os.environ.get('API_DOMAIN', f'api.{webdomain}')
 stage = os.environ.get('STAGE', 'Alpha')
 stage_color = {'Alpha': 'darkred', 'Beta': 'darkgreen',
                'Gamma': 'indigo'}.get(stage, 'lightblue')
@@ -42,6 +44,7 @@ def render_page(path, format='html', event={}, status_msg=None):
         query_params = {}
 
     template_vars = {
+        'apidomain': apidomain,
         'event': event,
         'gtag_id': gtag_ids.get(stage, gtag_ids.get('Beta', 'UA-xxxxxxxx-x')),
         'hostname': event.get('stageVariables', {}).get('HostName',
@@ -57,7 +60,8 @@ def render_page(path, format='html', event={}, status_msg=None):
         'stage_color': stage_color,
         'status_msg': status_msg,
         'style_debug': stage in ['Beta', 'Alpha'] or query_params.get(
-            'style_debug', False)
+            'style_debug', False),
+        'webdomain': webdomain,
     }
 
     log.debug(f'Template Vars = {template_vars}')
