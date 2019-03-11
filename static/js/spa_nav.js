@@ -5,7 +5,10 @@ window.addEventListener('popstate', function(event) {
   }
 }, false);
 
+const site_title = "Bryan Wyatt"
+
 function spa_nav(destination, updateHistory=true) {
+  set_loading_animation();
   $.ajax({
     url: api+"/pages/content?page="+destination,
     success: function(result) {
@@ -26,8 +29,23 @@ function spa_nav(destination, updateHistory=true) {
   });
 }
 
+function set_loading_animation() {
+  // Set page content
+  $("head > title").html(site_title);
+  $("#sitecontent > #pagetitle > h2").html('Loading...');
+  $("#sitecontent > #pagecontent").html([
+    "<div class=\"spinner\">",
+    "  <div class=\"rect1\"></div>",
+    "  <div class=\"rect2\"></div>",
+    "  <div class=\"rect3\"></div>",
+    "  <div class=\"rect4\"></div>",
+    "  <div class=\"rect5\"></div>",
+    "</div>"
+  ].join('\n'));
+}
+
 function update_page(path, title, content) {
-      browser_title = "Bryan Wyatt - " + title;
+      browser_title = site_title + " - " + title;
 
       // Set page content
       $("head > title").html(browser_title);
