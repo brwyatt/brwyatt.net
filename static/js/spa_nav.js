@@ -9,6 +9,7 @@ window.addEventListener('popstate', function(event) {
 $("#viewpane > #navbar > ul > li > a").each(function(){this.onmouseup = this.blur();});
 
 const site_title = "Bryan Wyatt"
+var xhr = false;
 
 function spa_nav(destination, updateHistory=true, forceReload=false) {
   if(!forceReload && destination == window.location.pathname) {
@@ -16,8 +17,12 @@ function spa_nav(destination, updateHistory=true, forceReload=false) {
     return
   }
 
+  if(xhr) {
+    xhr.abort()
+  }
+
   set_loading_animation();
-  $.ajax({
+  xhr = $.ajax({
     url: api+"/pages/content?page="+destination,
     success: function(result) {
       update_page(result.path, result.title, result.content);
