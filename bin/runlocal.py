@@ -6,6 +6,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import importlib.util
 import os
+from random import randint
 import re
 import time
 from urllib.parse import urlparse, parse_qs
@@ -13,6 +14,8 @@ from urllib.parse import urlparse, parse_qs
 HOST = os.environ.get('HOST', 'localhost')
 PORT = os.environ.get('PORT', 8000)
 HOST_PORT = f'{HOST}:{PORT}'
+LATENCY = int(os.environ.get('LATENCY', 0))
+LATENCY_JITTER = int(os.environ.get('LATENCY_JITTER', LATENCY*0.25))
 
 os.environ['LOGLEVEL'] = 'DEBUG'
 os.environ['STAGE'] = 'Alpha'
@@ -69,6 +72,11 @@ class RequestHandler(BaseHTTPRequestHandler):
                     }
                 }
                 res = handler(event, None)
+
+                if LATENCY:
+                    time.sleep(LATENCY + randint(
+                        -LATENCY_JITTER, LATENCY_JITTER))
+
                 self.send_response(int(res['statusCode']))
                 for header, value in res.get('headers', {}).items():
                     self.send_header(header, value)
