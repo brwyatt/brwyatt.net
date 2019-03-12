@@ -1,4 +1,5 @@
 from datetime import datetime
+from distutils.util import strtobool
 import logging
 import os
 
@@ -59,8 +60,8 @@ def render_page(path, format='html', event={}, status_msg=None):
         'stage': stage,
         'stage_color': stage_color,
         'status_msg': status_msg,
-        'style_debug': stage in ['Beta', 'Alpha'] or query_params.get(
-            'style_debug', False),
+        'style_debug': strtobool(query_params.get(
+            'style_debug', str(stage in ['Beta', 'Alpha']))),
         'webdomain': webdomain,
     }
 
