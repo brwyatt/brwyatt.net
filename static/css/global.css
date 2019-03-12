@@ -42,6 +42,7 @@ div#viewpane {
 div#sitecontent {
   background-color: white;
   margin-top: 0px;
+  padding: 0px;
 }
 
 div#siteheader {
@@ -55,6 +56,16 @@ div#siteheader h1 {
   text-align: left;
   text-shadow:  2px 2px 2px var(--palette-background);
   font-weight: bold;
+}
+
+div#pagetitle {
+  margin: 0px;
+  padding-left: 10px;
+}
+
+div#pagecontent {
+  margin: 0px;
+  padding: 10px;
 }
 
 div#footer {
