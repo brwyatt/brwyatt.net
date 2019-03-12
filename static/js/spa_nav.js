@@ -6,7 +6,7 @@ window.addEventListener('popstate', function(event) {
 }, false);
 
 // Prevent lingering "active" state
-$("#viewpane > #navbar > ul > li > a").each(function(){this.onmouseup = this.blur();});
+$("#navbar > ul > li > a").each(function(){this.onmouseup = this.blur();});
 
 const site_title = "Bryan Wyatt"
 var xhr = false;
@@ -30,10 +30,10 @@ function spa_nav(destination, updateHistory=true, forceReload=false) {
   }
 
   // Set selected page
-  $("#viewpane > #navbar > ul > li > a").each(function(){this.blur();});
-  $("#viewpane > #navbar > ul > li").removeClass("sel");
+  $("#navbar > ul > li > a").each(function(){this.blur();});
+  $("#navbar > ul > li").removeClass("sel");
   // Will need to fix this to match what's done in the Jinja2 template
-  $("#viewpane > #navbar > ul > li > a[href='"+destination+"']").parent().addClass("sel");
+  $("#navbar > ul > li > a[href='"+destination+"']").parent().addClass("sel");
 
   set_loading_animation();
   xhr = $.ajax({
