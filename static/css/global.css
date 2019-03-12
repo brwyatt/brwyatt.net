@@ -31,11 +31,13 @@ div#viewpane {
 
 div#sitecontent {
   background-color: white;
+  margin-top: 0px;
 }
 
 div#siteheader {
   background-image: var(--blue-radial-gradient-top-left);
   padding: 10px;
+  margin-bottom: 0px;
 }
 
 div#siteheader h1 {
