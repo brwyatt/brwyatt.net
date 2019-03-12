@@ -1,6 +1,6 @@
 :root {
-  --nav-hover: var(--blue-radial-gradient-top-center);
-  --nav-current: var(--blue-radial-gradient-center-left);
+  --nav-hover: var(--grey-radial-gradient-top-center);
+  --nav-current: var(--blue-radial-gradient-top-center);
 }
 
 div#navbar {

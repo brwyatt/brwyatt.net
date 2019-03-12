@@ -1,17 +1,26 @@
 :root {
   --palette-background: rgba(17,17,17,1);
   --palette-blue: rgba(2,99,189,1);
-  --gradient-start: rgba(255,255,255,1) 0%;
-  --gradient-stop1: rgba(0,181,255,1) 3%;
-  --gradient-stop2: rgba(1,140,221,1) 5%;
-  --gradient-stop3: var(--palette-blue) 20%;
-  --gradient-stop4: rgba(3,50,151,1) 60%;
-  --gradient-end: var(--palette-background) 99%;
-  --gradient-values: var(--gradient-start), var(--gradient-stop1), var(--gradient-stop2), var(--gradient-stop3), var(--gradient-stop4), var(--gradient-end);
-  /* https://cssgradient.io/ */
-  --blue-radial-gradient-top-left: radial-gradient(circle farthest-corner at 0% 0%, var(--gradient-values));
-  --blue-radial-gradient-top-center: radial-gradient(circle farthest-corner at 50% 0%, var(--gradient-values));
-  --blue-radial-gradient-center-left: radial-gradient(circle farthest-corner at 0% 50%, var(--gradient-values));
+  --palette-grey: rgba(99,99,99,1);
+
+  --blue-gradient-start: rgba(255,255,255,1) 0%;
+  --blue-gradient-stop1: rgba(0,181,255,1) 3%;
+  --blue-gradient-stop2: rgba(1,140,221,1) 5%;
+  --blue-gradient-stop3: var(--palette-blue) 20%;
+  --blue-gradient-stop4: rgba(3,50,151,1) 60%;
+  --blue-gradient-end: var(--palette-background) 99%;
+  --blue-gradient-values: var(--blue-gradient-start), var(--blue-gradient-stop1), var(--blue-gradient-stop2), var(--blue-gradient-stop3), var(--blue-gradient-stop4), var(--blue-gradient-end);
+  --blue-radial-gradient-top-left: radial-gradient(circle farthest-corner at 0% 0%, var(--blue-gradient-values));
+  --blue-radial-gradient-top-center: radial-gradient(circle closest-corner at 50% 0%, var(--blue-gradient-values));
+
+  --grey-gradient-start: rgba(255,255,255,1) 0%;
+  --grey-gradient-stop1: rgba(181,181,181,1) 3%;
+  --grey-gradient-stop2: rgba(140,140,140,1) 5%;
+  --grey-gradient-stop3: var(--palette-grey) 20%;
+  --grey-gradient-stop4: rgba(50,50,50,1) 60%;
+  --grey-gradient-end: var(--palette-background) 99%;
+  --grey-gradient-values: var(--grey-gradient-start), var(--grey-gradient-stop1), var(--grey-gradient-stop2), var(--grey-gradient-stop3), var(--grey-gradient-stop4), var(--grey-gradient-end);
+  --grey-radial-gradient-top-center: radial-gradient(circle closest-corner at 50% 0%, var(--grey-gradient-values));
 }
 
 body {
@@ -52,7 +61,7 @@ div#footer {
   text-align: center;
   font-weight: lighter;
   font-size: smaller;
-  color: grey;
+  color: var(--palette-grey);
   padding: 4px
 }
 
