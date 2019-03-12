@@ -26,6 +26,8 @@
 body {
   background-color: var(--palette-background);
   font-family: Arial, Helvetica, sans-serif;
+  padding: 0px;
+  margin: 0px;
 }
 
 div {
@@ -37,6 +39,8 @@ div#viewpane {
   margin: auto;
   max-width: 1000px;
   width: 100%;
+  margin-top: 0px;
+  padding-top: 0px;
 }
 
 div#sitecontent {
@@ -47,12 +51,15 @@ div#sitecontent {
 
 div#siteheader {
   background-image: var(--blue-radial-gradient-top-left);
-  padding: 10px;
-  margin-bottom: 0px;
+  padding: 15px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin: 0px;
 }
 
 div#siteheader h1 {
   color: white;
+  margin: 0px;
   text-align: left;
   text-shadow:  2px 2px 2px var(--palette-background);
   font-weight: bold;

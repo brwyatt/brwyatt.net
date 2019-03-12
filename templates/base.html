@@ -8,13 +8,13 @@
     {% include "js.html" %}
   </head>
   <body>
+    <div id='siteheader'>
+      {% if stage != 'Prod' -%}
+      <span style="float: right; color: white; background-color: {{stage_color}}; padding: 10px; border: 2px solid white;">{{stage}}</span>
+      {% endif -%}
+      <h1>Bryan Wyatt</h1>
+    </div>
     <div id='viewpane'>
-      <div id='siteheader'>
-        {% if stage != 'Prod' -%}
-        <span style="float: right; color: white; background-color: {{stage_color}}; padding: 10px; border: 2px solid white;">{{stage}}</span>
-        {% endif -%}
-        <h1>Bryan Wyatt</h1>
-      </div>
       <div id='navbar'>
         {% include "nav.html" %}
       </div>
