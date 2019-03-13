@@ -46,14 +46,18 @@ function spa_nav(destination, updateHistory=true, forceReload=false) {
     url: api+"/pages/content?page="+destination,
     success: function(result) {
       update_page(result.path, result.title, result.content);
-      window.history.replaceState({
-        title: result.title,
-        path: result.path
-      }, site_title + " - " + result.title, result.path);
     },
     error: function(result) {
-      console.log('ERROR');
-      console.log(result.status);
+      console.log("ERROR: " + result.status);
+      console.log("Response: ", result);
+      try {
+        response = JSON.parse(result.responseText);
+        update_page(destination, response.title, response.content);
+      } catch(err) {
+        update_page(destination, "Unexpected Error: " + result.status,
+          "<p>An unexpected error happened while trying to process the request.</p>"
+          + "<p>Try again later.</p>")
+      }
     }
   });
 }
@@ -85,6 +89,10 @@ function update_page(path, title, content) {
   ga('set', 'page', path);
   ga('send', 'pageview');
 
+  window.history.replaceState({
+    title: title,
+    path: path
+  }, browser_title, path);
 }
 
 /* vim: set ts=2 sw=2 sts=2 expandtab: */
