@@ -4,6 +4,7 @@ import os
 from brwyatt_web.exceptions import FileNotFoundException
 from brwyatt_web.logging import setup_logging
 from brwyatt_web.pages import render_page
+from brwyatt_web.pages.errors import error400, error404, error500
 
 
 log = setup_logging()
@@ -27,33 +28,33 @@ def handler(event, context):
         except FileNotFoundException as e:
             log.error('Caught 404 while rendering "{}"'.format(
                 queryParams['page']))
-            resp = {
-                'statusCode': '404',
-                'body': json.dumps({
-                    'Error': '404',
-                    'Message': 'Not found'
-                })
-            }
+            resp = error404(format='json', event=event)
         except Exception as e:
             log.critical('Unexpected exception rendering route "{}": {} - {}'
                          .format(queryParams['page'], e.__class__.__name__,
                                  str(e)))
-            resp = {
-                'statusCode': '500',
-                'body': json.dumps({
-                    'Error': '500',
-                    'Message': 'Server error'
-                })
-            }
+            try:
+                resp = error500(format='json', event=event)
+            except Exception as e:
+                log.critical('Failed to process 500 error, falling back to '
+                             'plain 500. {}: {}'.format(
+                                 e.__class__.__name__, str(e)))
+                resp = {
+                    'statusCode': '500',
+                    'headers': {
+                        'Content-Type': 'application/json'
+                    },
+                    'body': json.dumps({
+                        'title': 'Error: 500',
+                        'content': '<p>Server encountered an error while '
+                            'attempting to handle another server error.</p>',
+                        'page': queryParams.get('page', None),
+                    })
+                }
     else:
         log.error('Request did not provide a page parameter')
-        resp = {
-            'statusCode': '400',
-            'body': json.dumps({
-                'Error': '400',
-                'Message': 'Missing "page" parameter'
-            })
-        }
+        resp = error400(format='json', statusmsg='Missing "page" parameter',
+                        event=event)
 
     if 'headers' not in resp:
         resp['headers'] = {}
