@@ -1,3 +1,9 @@
+// Set initial browser state
+window.history.replaceState({
+  title: $("#sitecontent > #pagetitle > h2").html(),
+  path: window.location.pathname,
+}, $("head > title").html(), window.location.pathname);
+
 // Add handler for the back button
 window.addEventListener('popstate', function(event) {
   if(event.state) {
