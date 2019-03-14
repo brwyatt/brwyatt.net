@@ -78,7 +78,7 @@ Resources:
   AltNameWebRedirectBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub 'Brwyatt-Web-Redirector-${Stage}'
+      BucketName: !Sub '${WebDomain}-redirector'
       WebsiteConfiguration:
         RedirectAllRequestsTo:
           HostName: !Ref WebDomain
