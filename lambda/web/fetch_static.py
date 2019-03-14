@@ -20,8 +20,9 @@ def handler(event, context):
         asset_type = 'misc'
 
     # Use the resource name, if given. Otherwise, use the path
-    file_name = event.get('pathParameters', {}).get('resource',
-                                                    event['path'][1:])
+    if event.get('pathParameters') is None:
+        event['pathParameters'] = {}
+    file_name = event['pathParameters'].get('resource', event['path'][1:])
 
     log.debug('Fetching "{}" resource with name "{}"'.format(
         asset_type, file_name))
