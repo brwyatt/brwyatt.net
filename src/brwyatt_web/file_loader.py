@@ -46,16 +46,22 @@ def load_static_asset(asset_type, file_name):
     content_type = mimetypes.guess_type(file_name)[0]
     log.info(f'Guessing mimetype as "{content_type}"')
 
-    with open(file_path, 'rb') as asset:
-        content = asset.read()
-
-    log.info('Successfully fetched "{}" asset "{}"'.format(asset_type,
-                                                           file_name))
-
-    return {
+    res = {
         'statusCode': 200,
         'headers': {
             'Content-Type': content_type,
         },
-        'body': content,
     }
+
+    with open(file_path, 'rb') as asset:
+        content = asset.read()
+
+    try:
+        res['body'] = str(content, 'utf-8')
+    except UnicodeDecodeError as e:
+        res['body'] = content.hex()
+
+    log.info('Successfully fetched "{}" asset "{}"'.format(asset_type,
+                                                           file_name))
+
+    return res
