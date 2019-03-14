@@ -1,7 +1,6 @@
-from brwyatt_web.exceptions import FileNotFoundException, PathSecurityException
 from brwyatt_web.file_loader import load_static_asset
 from brwyatt_web.logging import setup_logging
-from brwyatt_web.pages.errors import error400, error404, error500
+from brwyatt_web.pages.errors import error500
 
 
 log = setup_logging()
@@ -15,35 +14,20 @@ def handler(event, context):
 
     if event['resource'].startswith('/css/'):
         asset_type = 'css'
-        content_type = 'text/css'
     elif event['resource'].startswith('/js/'):
         asset_type = 'js'
-        content_type = 'application/javascript'
     else:
-        log.error('Got unrecognized resource: "{}"'.format(event['resource']))
-        return error400(event=event)
+        asset_type = 'misc'
 
-    file_name = event['pathParameters']['resource']
+    # Use the resource name, if given. Otherwise, use the path
+    file_name = event.get('pathParameters', {}).get('resource',
+                                                    event['path'][1:])
 
     log.debug('Fetching "{}" resource with name "{}"'.format(
         asset_type, file_name))
 
     try:
-        return {
-            'statusCode': '200',
-            'headers': {
-                'Content-Type': content_type,
-            },
-            'body': load_static_asset(asset_type, file_name)
-        }
-    except FileNotFoundException as e:
-        log.error('Unable to find resource "{}/{}": {}'
-                  .format(asset_type, file_name, str(e)))
-        return error404(event=event)
-    except PathSecurityException as e:
-        log.error('Exception fetching resource "{}/{}": {}'
-                  .format(asset_type, file_name, str(e)))
-        return error400(event=event)
+        return load_static_asset(asset_type, file_name)
     except Exception as e:
         log.critical('Unexpected exception fetching resource "{}/{}": {}'
                      .format(asset_type, file_name, str(e)))

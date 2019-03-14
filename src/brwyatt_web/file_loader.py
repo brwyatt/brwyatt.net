@@ -1,7 +1,8 @@
 import logging
+import mimetypes
 import os
 
-from brwyatt_web.exceptions import FileNotFoundException, PathSecurityException
+from brwyatt_web.pages.errors import error400, error404
 
 
 log = logging.getLogger(__name__)
@@ -22,30 +23,39 @@ def load_static_asset(asset_type, file_name):
     if static_path != os.path.commonpath([static_path, asset_dir]):
         errmsg = 'Asset directory is outside static assets directory'
         log.error(errmsg)
-        raise PathSecurityException(errmsg)
+        return error400()
     elif not os.path.isdir(asset_dir):
         errmsg = 'Asset type "{}" is invalid or does not exist'.format(
             asset_type)
         log.error(errmsg)
-        raise FileNotFoundException(errmsg)
+        return error404()
 
     file_path = os.path.abspath(os.path.join(asset_dir, file_name))
     log.debug('asset file_path = {}'.format(file_path))
     if asset_dir != os.path.commonpath([asset_dir, file_path]):
         errmsg = 'Requested asset is outside of expected asset directory'
         log.error(errmsg)
-        raise PathSecurityException(errmsg)
+        return error400()
     elif not os.path.isfile(file_path):
         errmsg = 'Asset file could not be found'
         log.error(errmsg)
-        raise FileNotFoundException(errmsg)
+        return error404()
 
     log.info('Asset size: {}'.format(os.path.getsize(file_path)))
 
-    with open(file_path, 'r') as asset:
+    content_type = mimetypes.guess_type(file_name)[0]
+    log.info(f'Guessing mimetype as "{content_type}"')
+
+    with open(file_path, 'rb') as asset:
         content = asset.read()
 
     log.info('Successfully fetched "{}" asset "{}"'.format(asset_type,
                                                            file_name))
 
-    return content
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Content-Type': content_type,
+        },
+        'body': content,
+    }
