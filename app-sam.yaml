@@ -45,24 +45,6 @@ Resources:
         Stage: !Ref Stage
         HostName: !Ref WebDomain
 
-  WebMapping:
-    Type: AWS::ApiGateway::BasePathMapping
-    DependsOn: BrwyattWebStage
-    Properties:
-      BasePath: ''
-      DomainName: !Ref WebDomain
-      RestApiId: !Ref BrwyattWeb
-      Stage: !Ref Stage
-
-  WebMappingWww:
-    Type: AWS::ApiGateway::BasePathMapping
-    DependsOn: BrwyattWebStage
-    Properties:
-      BasePath: ''
-      DomainName: !Sub 'www.${WebDomain}'
-      RestApiId: !Ref BrwyattWeb
-      Stage: !Ref Stage
-
   BrwyattApi:
     Type: AWS::Serverless::Api
     Properties:
@@ -75,6 +57,15 @@ Resources:
         Stage: !Ref Stage
         HostName: !Ref ApiDomain
 
+  WebMapping:
+    Type: AWS::ApiGateway::BasePathMapping
+    DependsOn: BrwyattWebStage
+    Properties:
+      BasePath: ''
+      DomainName: !Ref WebDomain
+      RestApiId: !Ref BrwyattWeb
+      Stage: !Ref Stage
+
   ApiMapping:
     Type: AWS::ApiGateway::BasePathMapping
     DependsOn: BrwyattApiStage
@@ -83,6 +74,15 @@ Resources:
       DomainName: !Ref ApiDomain
       RestApiId: !Ref BrwyattApi
       Stage: !Ref Stage
+
+  AltNameWebRedirectBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'Brwyatt-Web-Redirector-${Stage}'
+      WebsiteConfiguration:
+        RedirectAllRequestsTo:
+          HostName: !Ref WebDomain
+          Protocol: 'https'
 
   BrwyattLayer:
     Type: AWS::Serverless::LayerVersion
