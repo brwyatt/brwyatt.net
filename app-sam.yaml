@@ -182,6 +182,18 @@ Resources:
             RestApiId: !Ref BrwyattWeb
             Path: '/js/{resource+}'
             Method: GET
+        favicon:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BrwyattWeb
+            Path: '/favicon.ico'
+            Method: GET
+        keybase:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BrwyattWeb
+            Path: '/keybase.txt'
+            Method: GET
 
 Outputs:
   ApiUrl:

@@ -1,0 +1,222 @@
+==================================================================
+https://keybase.io/brwyatt
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://brwyatt.net
+  * I am brwyatt (https://keybase.io/brwyatt) on keybase.
+  * I have a public key with fingerprint 7139 4C8E CA4A B1BE B85E  B202 B83E E2D5 5C50 C6B2
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0101578b272574342ef00d275dc3be0289c210bf548758fe0738291ab2fc3e4ec9bf0a",
+            "fingerprint": "71394c8eca4ab1beb85eb202b83ee2d55c50c6b2",
+            "host": "keybase.io",
+            "key_id": "b83ee2d55c50c6b2",
+            "kid": "0101578b272574342ef00d275dc3be0289c210bf548758fe0738291ab2fc3e4ec9bf0a",
+            "uid": "1a39f356005a77ab28786c9fde832d19",
+            "username": "brwyatt"
+        },
+        "service": {
+            "hostname": "brwyatt.net",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1485592142,
+    "expire_in": 157680000,
+    "prev": "e31a09852c0f9c0fc17d977cba15bfced817c683e4c195dbbe0977a2f607e4ac",
+    "seqno": 34,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.62
+Comment: https://keybase.io/crypto
+
+yMNAAnicrVJ9TFVlHL73iuCFG6l8aCmEZ5YYt7vzed9zbsqGC3I6ECEQBbme8573
+wAm693Lv4SIhGymD/FgzviQyLS7VumyNK4pN2AoClmRiNcg0GpVmG6hAxiQHdA6r
+P9r6s3d79+79/Z7neZ/32a//sWW6UP0niT+P5KUPntN/2dtUqss5kZ1WgQlOsRyz
+VWBFaOlAxSLyKPYiWcRsGE7gBANYgQQkA2iKJpGE4yIJGBFSAsJJloMkgQsSQ7OA
+YSWEA4olOYIXSAlSiEaQEyScx8yYJDsKkNvllh2KKgsIiqMhiyBP8wIhIIFlkEDi
+pMBSCJEiw0AGh1aBVImFTo/GUM0JvAdZZKdaUy/2JXv/gf+ffZcuyRE8xUkUY8Vx
+hgdARbGAtUJOEhFLkSLBaUAPcjv4V5Dmyl1WzisKVmnG1KJXhkjLVfvIvwEWB1JU
+psvtVJzQWaw2ChXF5bFpRKXcpSHLkGD/W8MuyA5RTVFleJHbIzsdmI1QkVCRNVGC
+ZhmGIwmaNGPooEt2I7usIRhgZXF1ae8gryqJKILHOZYhIS5x6oYEEDkAoMATjCBB
+JLIEgFY1WBoSHCMKalxqmyclKw4QzUNM+1WJw4nZKFr1yReomh65wMErpW6EVfb1
+5gXp9KG64OUGbbx0ocaV/wxdsvL4wsbbbS8eYB5WxvgHkrDJ19DEB/6Iue5rs4H5
+hB/qjp2wNiwaa7/efy/luZ730jJTU64W5nffWbtzd8/2hMjAljXjiaPZN88+iq4f
+/R4eXp948vSt1vCTmQceAhtvpCzjacu+S7y48Jk33puZkjWys9hS0r/+PhhunDxz
+e/H0Id+drGt9vS/VDOQK75851bm/2eTfZBmIfbcu73LZFHpQZYoOu3W9qaW6I67b
+WK17dsC35tzxy6sMYHzDjlNxSfcL8bf1PXPOp+W3LrSsI7Z+274i9/yboc+3VsAZ
+fWhH6Q3by1WdLQeXv1CWPmWeiPw840pOyM2hHGGPJ71p9S+HgqffsTTZfzcF3vA/
+2bk7KpaL2Df+4bCuL/tCSHxqK7z708rAE4GaqPKu/PbEu8ldokOKdp03XPko7o+2
+XTpjeH9+VgKoGDP9xn1cHfHgiA94fcemB+aGXJ6rv06654cqN6y4cf2ZRr+rTjQf
+ZVjTounP1Jg9IR0j881ttVt/nNWvfX1TlHHvSM22ha8Gh0cjx6YHn8rduK5hc96r
+E2dnktO6S+p7Zg5nt5qbQzKCgmP2ZtiKxAXCd2nLpWHXLn/HxYxt8W4+uFGsjTek
+GzI314dnldaHRResBg2+ubrsgiNBWcdTJ/x5lqNRgS7D2Be+dj5sVVLCVGbVvVhy
+Zt83j2pzJqvmZz8tov8CRFu5IQ==
+=c1SM
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/brwyatt
+
+==================================================================
+==================================================================
+https://keybase.io/brwyatt
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://brwyatt.com
+  * I am brwyatt (https://keybase.io/brwyatt) on keybase.
+  * I have a public key with fingerprint 7139 4C8E CA4A B1BE B85E  B202 B83E E2D5 5C50 C6B2
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0101578b272574342ef00d275dc3be0289c210bf548758fe0738291ab2fc3e4ec9bf0a",
+            "fingerprint": "71394c8eca4ab1beb85eb202b83ee2d55c50c6b2",
+            "host": "keybase.io",
+            "key_id": "b83ee2d55c50c6b2",
+            "kid": "0101578b272574342ef00d275dc3be0289c210bf548758fe0738291ab2fc3e4ec9bf0a",
+            "uid": "1a39f356005a77ab28786c9fde832d19",
+            "username": "brwyatt"
+        },
+        "service": {
+            "hostname": "brwyatt.com",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1485592271,
+    "expire_in": 157680000,
+    "prev": "dbe5f9d9facc79e91a1b56ef704f9db393d3eb350e73c91ae4b53760f512fbcf",
+    "seqno": 36,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.62
+Comment: https://keybase.io/crypto
+
+yMM/AnicrVJrUFRlGN7lZi3sgAoVKiXHFGiW7Vz223MOINZQBAkaWqgz1nYu39k9
+g+zZy9lF3FYcmCF1BEXlMiMm0SQijAxEg0KDLqFASIhihTdCx6JxcOw2TkXQOUz9
+aKaffX+++Z73eZ7ved95+/XBGp32bPrd69vfuNShHQ7UeDRbD+SP+hBW4ouRFB9S
+ABcuuIOHbtlSIPJICoJiKAZIisVJHJAmwoRDAUV5nAQ8R7AQxSmawzGUFYCJIgEl
+QJQkKJzGGBYXOAKaIEezAsogBkQQ7VbocrhEu6zYkhhBmzgKcoyJYTEWshSALI7i
+LEVAiPMAcADlzCyuCG2SW1Uo4VjGDY2ipGDKw7IQ7z/4/3Nuz4IdxhC0QAAzigKG
+JBUWRVJmjhZ4SBE4j9Eq0Q1ddqYQqqlcRcWMLCN+A6KAXpGD6lzVRv5NMHJSoaJ0
+uCRZ4qQdSsEmyw53iiqUix0qswiylr89LKxo55UpKgovdLlFyY6kYAqTk0XVFDNR
+ANA4TmIGBO50iC5oEVUGIM0Uqhz1H+hVLHkWAoHmaYHhOJKGStMYC8xQIFGTArME
+TfAEZAmAQpLglCo0sYAgzagAMFxgOQFRu3LaJSSFMCs5Gavi6Ratdkb2uCDi7wts
+D9FodZqw0CB1vTS6J6P+WTp/VOQ8dy4qdm1822jNQTzuUE/33unkujLfSmx8JiHX
+ecVw5zXEFyf/nBzSn6533yqtdggH/A+fvoYHT2+YPeZevrXOd2qsPnjXU7drC4lW
+7ad+1DCm3TtFWle3NOjn3ww7cWFw573yrONXs7fZqOd6v8/Y7XQ8TNoUb+j8va/2
+chCpz176denp83W2xRs3PogaPhmtn63+IYauvWfL3md8ERDonry5V0bX5tVXGkeq
+opmmxb6Dg741+VGN87EN95/tuhyXai3ZUrDtha8OLxuzlltX5xjTSzf13dTmzY4l
+Vgbuhv0RefxlXULG/Vs/VX/j3YW61zf5Av0l642fg4wJMXLE4/jtbGiVVBAh3bCu
+eBRuGerVRZRmHPk2JGx3RUNySDjgNvTYY9qH2jL7ZljrBZ5Asx61aEsiZzsHT//4
+jLyuLLb+iqfiiS0XP0DeyW8793x7mnfJ1daJ+KaarvL3qjqyTsV0MqsaO0eS7Jc4
+Q54XOJPWNeDD42m/lDCjDzyHjupuL9+8bG7q9Z7CEy3XiLk1TWmNgdDaz/Slr36Y
+O3BjICHHUfRR9FT7/rTApOd6zfvnZ1bqahb9ememLrysozpzfNHRJZ+cybr40pdd
++50Rj1Odj5tP+iebN2tu7qmYfmugN/e7iYlKZoWjuzk/Mwekvm1PnPw4qPVP2hZe
+l9hddubw0ndNXwwd+Qunmbmi
+=y/tA
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/brwyatt
+
+==================================================================
+==================================================================
+https://keybase.io/brwyatt
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://brwyatt.me
+  * I am brwyatt (https://keybase.io/brwyatt) on keybase.
+  * I have a public key with fingerprint 7139 4C8E CA4A B1BE B85E  B202 B83E E2D5 5C50 C6B2
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0101578b272574342ef00d275dc3be0289c210bf548758fe0738291ab2fc3e4ec9bf0a",
+            "fingerprint": "71394c8eca4ab1beb85eb202b83ee2d55c50c6b2",
+            "host": "keybase.io",
+            "key_id": "b83ee2d55c50c6b2",
+            "kid": "0101578b272574342ef00d275dc3be0289c210bf548758fe0738291ab2fc3e4ec9bf0a",
+            "uid": "1a39f356005a77ab28786c9fde832d19",
+            "username": "brwyatt"
+        },
+        "service": {
+            "hostname": "brwyatt.me",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1495591034,
+    "expire_in": 157680000,
+    "prev": "5ca5ca5aa5a80ea264da3a24f0fa50c067b9c32c61178646cd534418e4b16bb0",
+    "seqno": 44,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.70
+Comment: https://keybase.io/crypto
+
+yMM/AnicrVJ9UBRlGD9Qk69GA/McPYZaLq04cT9vd6/iq0YHkbpQwozheHf3XViR
+2/NuOTgYVJTJqaaEEuRDHTvHS7NEIvGmJoYDtCHCxK9QpKEDHNAoRsqGmsF2mfqj
+mf7snWfmneeZ3+/3/J5nnp5HF+giQvxJweu51oufhfQF6kp0rxsnyisQThY8iKUC
+KYLzH9whQJdiK5IExIKgGIpRNMPhNE7RJEHiUERRAacpgSc4iOIMy+MYyokUydAU
+I0KUJhicxQCHizwBSciznIgCxISIkr0AOh1Oya6osjRGsCTPQB6QgMM4yDEU5HAU
+5xgCQlygKJ5CeTOHq8RC2aUxVHMccMFESVZramKbt/cf+P/Zd8m8HAYIViQoM4pS
+gKZVFEMzZp4VBcgQuICxGtAFnXZQDDVXzlIPUBSk0oSoRbfEQ22v2iD/BiSqiQlx
+OGVF5uUdar1QURwui8ZTPA4NWAo5298SNk6yC+oSVYYbOl2SbEcsmIrkFUnTxEiW
+olgMJUgTAssckhPaJA1B0WYGVZ/WB7pVSYoHWgA1GBQC3EwKgAA4KaIiUJeImmmO
+5QmcN2OYOiNp5gWKIEmMgSSHmTkORbShdtplxEKqrRRQoGq6pAI7UEqcEKnsCuQu
+1IVE6B5ZFKpdly4ifOk/Nxd7ZMnDXfVzUYcTFo/+0hKeEW8Yf26yzx8+fX+svuJu
+U8zgpd6EZbtHjNszRt8OJvP3h9q+SAtNKfpgdzVPVo05y71Npun1Hc25m9rvBm7t
+8XSnGJlzZOSWqN410a+4TxiSHuuf2lsX/eW1rmfEslB9mM//I3Lm/ZSBG4a8Pt/S
+6QstDng+49y4r/D2nHxl85YCC56+vMk3mZiuhH7V3ZlgTPv1Abr21Z0e6/6L+04/
+Ffn8penrbzZvrqQH2+d6lx2Ia1+36aXhianETxo+nHyvJ2z0Nr246bK0HrG6z97c
+Z9zwUW8wNebnWiE9UJxKHuBzazfc+K0v7ezV2cHy38+MRR/Br/mnvgl7d+ULcZEr
+M6+21SAdDQcbw7urw/KQO950YtSLuYXw5u+qbj0eDKYlTdneGp49/Gen2MrOVuu/
+T10yHf/auvztp4Wcraes8TdbN0rnncSd4z88aLvckdkfkpQcs/XJ2q7SzweGjw5k
++YhO/fg9Q0CX8uyiltSGtsLZBK/h4zxrWb+1zfZHaqbuWNmh5duOn/iU74m0zRjz
+TyVXrF51Utf+beyFbnntxhX6NSFgQVw2CAC9HNu6KyWh+J2D2b5AzstDQ40mJnjI
+P4Ie8wxeadxbV5P/dNS9slVZT/yUOLOns2a1vmJF5kx9VfZEzNdZwP4QvhE5F58z
+su0oG5f54knrQm+78S//jL4S
+=wZwK
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/brwyatt
+
+==================================================================
