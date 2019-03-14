@@ -83,7 +83,13 @@ class RequestHandler(BaseHTTPRequestHandler):
                 if 'Content-Type' not in res.get('headers', {}):
                     self.send_header('Content-Type', 'text/plain')
                 self.end_headers()
-                self.wfile.write(bytes(res['body'], 'UTF-8'))
+                if type(res['body']) is str:
+                    self.wfile.write(bytes(res['body'], 'UTF-8'))
+                elif type(res['body']) is bytes:
+                    self.wfile.write(res['body'])
+                else:
+                    raise Exception(
+                        'Cannot write type "{type(res["body"])}" to client!')
                 return
 
 
