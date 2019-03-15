@@ -18,6 +18,14 @@ def handler(event, context):
         asset_type = 'js'
     else:
         asset_type = 'misc'
+        if event['path'] == '/favicon.ico':
+            return {
+                'statusCode': 301,
+                'headers': {
+                    'Location': 'https://static.brwyatt.net/favicon.ico',
+                },
+                'body': '',
+            }
 
     # Use the resource name, if given. Otherwise, use the path
     if event.get('pathParameters') is None:
