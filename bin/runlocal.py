@@ -90,7 +90,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                     if res.get('isBase64Encoded', False):
                         self.wfile.write(base64.b64decode(bytes(res['body'], 'utf-8')))
                     else:
-                        self.wfile.write(bytes(res['body'], 'UTF-8'))
+                        self.wfile.write(bytes(res['body'], 'utf-8'))
                 elif type(res['body']) is bytes:
                     self.wfile.write(res['body'])
                 else:
