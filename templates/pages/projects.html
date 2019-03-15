@@ -1,8 +1,65 @@
 {% extends base %}
 {% block title %}Projects{% endblock %}
 {% block content %}
+<p>Most of my projects can be found on my <a href="https://github.com/brwyatt">GitHub</a>, but I also keep a bunch of random junk on there, so hopefully I can link to and point out some of my favorites (or most useful) here.</p>
+
+<h3>smartthings_logging</h3>
+<p>A fairly simple project with the goal/intent of pulling Samsung SmartThings sensor data into CloudWatch. CloudWatch Metrics are created for each sensor datasource and can be graphed to see historical data and trends. Recently updated to work in Lambda, and also leverage AWS Serverless Application Model with automatic deployments through CodePipeline.</p>
+
 <ul>
-  <li><a href="https://github.com/brwyatt">GitHub Projects</a></li>
+  <li><a href="https://github.com/brwyatt/smartthings_logging">GitHub Repo</a></li>
 </ul>
+
+<h3>Cloud-Fail2Ban</h3>
+<p>Python Lambda functions that can accept events from CloudWatch (such as from Linux Auth.log and Syslog), and check against Fail2Ban-like expressions, storing match records in DynamoDB in order to aggregate matches across multiple hosts. Once a threshold of matches is reached, bans are triggered via messages to an SNS topic with filters on the SQS subscriptions so individual hosts can pick which jails/bans are relevant to them. This is a future target to get updated with SAM.</p>
+
+<ul>
+  <li><a href="https://github.com/brwyatt/Cloud-Fail2Ban">GitHub Repo</a></li>
+  <li><a href="https://github.com/brwyatt/puppet-cloud_fail2ban">Client-Side Puppet Module GitHub Repo</a></li>
+</ul>
+
+<h3>Various Puppet Modules</h3>
+<p>As I use Puppet at home to manage my desktop, laptops, and various other hosts, I've had need to create a few Puppet Modules to help along the way, and have released a few on the Puppet Forge.<p>
+
+<h4>flatpak</h4>
+<p>Module to manage Flatpak remotes and applications. Needs some more attention and a rewrite, which I've started, but have yet to complete.</p>
+
+<ul>
+  <li><a href="https://forge.puppet.com/brwyatt/flatpak">Forge Module</a></li>
+  <li><a href="https://github.com/brwyatt/puppet-flatpak">GitHub Repo</a></li>
+</ul>
+
+<h4>irssi</h4>
+<p>Module to install and manage user configuration for the irssi IRC client.</p>
+
+<ul>
+  <li><a href="https://forge.puppet.com/brwyatt/irssi">Forge Module</a></li>
+  <li><a href="https://github.com/brwyatt/puppet-irssi">GitHub Repo</a></li>
+</ul>
+
+<h4>vim</h4>
+<p>Module to install and manage user configuration for vim.</p>
+
+<ul>
+  <li><a href="https://forge.puppet.com/brwyatt/vim">Forge Module</a></li>
+  <li><a href="https://github.com/brwyatt/puppet-vim">GitHub Repo</a></li>
+</ul>
+
+<h3>Warhammer Army Browser</h3>
+<p>A quick little webapp I wrote a while back to play around with some serverless concepts and Javascript-based Single-Page Applications. Database is backed by DynamoDB, site is hosted out of S3, and the API is out of Lambda. It is very VERY rough (then again, who doesn't hate yesterday's code?) but it was fun and accomplished it's goal. Could be used for any tabletop gamming, and I might cycle back some day and improve it and convert it over to SAM as well.</p>
+
+<ul>
+  <li><a href="https://wh.brwyatt.net/">Army Browser</a></li>
+  <li><a href="https://github.com/brwyatt/warhammer_armies">GitHub Repo</a></li>
+</ul>
+
+<h3>This Site!</h3>
+<p>This very site's code is also up on GitHub. It is fully serverless and built with SAM/CloudFormation. Probably quite a bit overkill for what it is, but it was fun and a good learning experience. Might be useful to someone, if they're curious.</p>
+
+<ul>
+  <li><a href="https://github.com/brwyatt/brwyatt.net">GitHub Repo</a></li>
+</ul>
+
+
 {% endblock %}
 {# vim: set ts=2 sw=2 sts=2 expandtab: -#}
