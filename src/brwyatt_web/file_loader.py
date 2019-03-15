@@ -1,3 +1,4 @@
+import base64
 import logging
 import mimetypes
 import os
@@ -57,9 +58,11 @@ def load_static_asset(asset_type, file_name):
         content = asset.read()
 
     try:
+        log.debug('Attempting to encode string')
         res['body'] = str(content, 'utf-8')
     except UnicodeDecodeError as e:
-        res['body'] = content.hex()
+        log.debug('Unable to encode as string, base64 encoding instead')
+        res['body'] = str(base64.b64encode(content), 'utf-8')
         res['isBase64Encoded'] = True
 
     log.info('Successfully fetched "{}" asset "{}"'.format(asset_type,

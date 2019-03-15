@@ -3,6 +3,7 @@
 # Largely based on code by Integralist on GitHub:
 # https://gist.github.com/Integralist/ce5ebb37390ab0ae56c9e6e80128fdc2
 
+import base64
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import importlib.util
 import os
@@ -87,7 +88,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 self.end_headers()
                 if type(res['body']) is str:
                     if res.get('isBase64Encoded', False):
-                        self.wfile.write(bytes.fromhex(res['body']))
+                        self.wfile.write(base64.b64decode(bytes(res['body'], 'utf-8')))
                     else:
                         self.wfile.write(bytes(res['body'], 'UTF-8'))
                 elif type(res['body']) is bytes:
