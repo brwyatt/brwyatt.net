@@ -35,9 +35,6 @@ def load_handlers(routes):
     return route_handlers
 
 
-binary_types = [
-    'image/vnd.microsoft.icon'
-]
 routes = load_handlers([
     (r'^/$', 'lambda/web/page_renderer.py'),
     (r'^/css/(?P<resource>.*)$', 'lambda/web/fetch_static.py'),
@@ -89,8 +86,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                     self.send_header('Content-Type', 'text/plain')
                 self.end_headers()
                 if type(res['body']) is str:
-                    if (res.get('headers', {}).get('Content-Type', None) in
-                            binary_types):
+                    if res.get('isBase64Encoded', False):
                         self.wfile.write(bytes.fromhex(res['body']))
                     else:
                         self.wfile.write(bytes(res['body'], 'UTF-8'))
