@@ -42,7 +42,7 @@ Resources:
       Name: !Sub 'Brwyatt-Web-${Stage}'
       StageName: !Ref Stage
       BinaryMediaTypes:
-        - 'image~1vnd.microsoft.icon'
+        - '*~1*'
       Variables:
         Stage: !Ref Stage
         HostName: !Ref WebDomain
