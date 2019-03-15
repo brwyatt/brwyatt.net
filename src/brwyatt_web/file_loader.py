@@ -60,6 +60,7 @@ def load_static_asset(asset_type, file_name):
         res['body'] = str(content, 'utf-8')
     except UnicodeDecodeError as e:
         res['body'] = content.hex()
+        res['isBase64Encoded'] = True
 
     log.info('Successfully fetched "{}" asset "{}"'.format(asset_type,
                                                            file_name))
