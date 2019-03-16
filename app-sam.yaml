@@ -167,6 +167,7 @@ Resources:
       CodeUri: lambda/web/fetch_static.py
       Policies: AWSLambdaBasicExecutionRole
       Layers:
+        - !Ref BrwyattTemplatesLayer
         - !Ref BrwyattStaticLayer
       Environment:
         Variables:
