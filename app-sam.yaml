@@ -109,7 +109,7 @@ Resources:
   BrwyattTemplatesLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      LayerName: !Sub 'BrwyattStatic-${Stage}'
+      LayerName: !Sub 'BrwyattTemplates-${Stage}'
       Description: Jinja2 Templates for brwyatt.net
       ContentUri: templatesbuild/
       RetentionPolicy: Delete
