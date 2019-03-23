@@ -168,9 +168,11 @@ Resources:
       Policies: AWSLambdaBasicExecutionRole
       Layers:
         - !Ref BrwyattStaticLayer
+        - !Ref BrwyattTemplatesLayer
       Environment:
         Variables:
           STATIC_PATH: '/opt/static'
+          TEMPLATE_PATH: '/opt/templates'
       Events:
         css:
           Type: Api
