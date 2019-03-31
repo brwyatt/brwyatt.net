@@ -198,6 +198,12 @@ Resources:
             RestApiId: !Ref BrwyattWeb
             Path: '/keybase.txt'
             Method: GET
+        robots:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BrwyattWeb
+            Path: '/robots.txt'
+            Method: GET
 
 Outputs:
   ApiUrl:

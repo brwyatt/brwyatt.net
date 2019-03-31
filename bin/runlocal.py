@@ -42,6 +42,7 @@ routes = load_handlers([
     (r'^/js/(?P<resource>.*)$', 'lambda/web/fetch_static.py'),
     (r'^/favicon.ico$', 'lambda/web/fetch_static.py'),
     (r'^/keybase.txt$', 'lambda/web/fetch_static.py'),
+    (r'^/robots.txt$', 'lambda/web/fetch_static.py'),
     (r'^/pages/content$', 'lambda/api/get_pagecontent.py'),
     (r'^/(?P<proxy>.*)$', 'lambda/web/page_renderer.py'),
 ])
