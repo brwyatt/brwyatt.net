@@ -12,8 +12,7 @@ echo "Installing Python module"
 pip install --no-dependencies --target build/python .
 
 echo "Compiling SAM template"
-ls bin/ -l
-bin/compile_sam.py
+python3 bin/compile_sam.py
 
 echo "Building static"
 cp -r static{,build/}
