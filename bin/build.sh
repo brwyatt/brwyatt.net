@@ -11,6 +11,9 @@ grep -ivEe '^boto(3|core)[=<>]' requirements.txt | pip install -r /dev/stdin --t
 echo "Installing Python module"
 pip install --no-dependencies --target build/python .
 
+echo "Compiling SAM template"
+bin/compile_sam.py
+
 echo "Building static"
 cp -r static{,build/}
 

@@ -11,6 +11,7 @@ from random import randint
 import re
 import time
 from urllib.parse import urlparse, parse_qs
+import yaml
 
 HOST = os.environ.get('HOST', 'localhost')
 PORT = os.environ.get('PORT', 8000)
@@ -36,16 +37,26 @@ def load_handlers(routes):
     return route_handlers
 
 
+try:
+    with open('static_routes.yaml') as f:
+        static_routes = yaml.load(f)
+except Exception as e:
+    print('Error loading static routes from file: {}: {}'.format(
+        str(e.__class__.__name__), str(e)))
+    static_routes = {}
+
 routes = load_handlers([
     (r'^/$', 'lambda/web/page_renderer.py'),
-    (r'^/css/(?P<resource>.*)$', 'lambda/web/fetch_static.py'),
-    (r'^/js/(?P<resource>.*)$', 'lambda/web/fetch_static.py'),
-    (r'^/favicon.ico$', 'lambda/web/fetch_static.py'),
-    (r'^/keybase.txt$', 'lambda/web/fetch_static.py'),
-    (r'^/robots.txt$', 'lambda/web/fetch_static.py'),
+] + [
+    ('^{}$'.format(re.sub(r'\{([a-zA-Z0-9]+)([+*])\}', r'(?P<\1>.\2)', x)),
+     'lambda/web/fetch_static.py')
+    for x in list(static_routes.values())
+] + [
     (r'^/pages/content$', 'lambda/api/get_pagecontent.py'),
     (r'^/(?P<resource>.*)$', 'lambda/web/page_renderer.py'),
 ])
+
+print('Loaded routes: {}'.format([x[0] for x in routes]))
 
 
 class RequestHandler(BaseHTTPRequestHandler):

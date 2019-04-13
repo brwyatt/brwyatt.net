@@ -2,12 +2,12 @@ from datetime import datetime
 from distutils.util import strtobool
 import logging
 import os
+import yaml
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from brwyatt_web.exceptions import (
     FileNotFoundException, InvalidClientRequestException)
-from brwyatt_web.pages.routes import routes
 
 
 log = logging.getLogger(__name__)
@@ -32,6 +32,18 @@ templates = Environment(
 )
 
 templates.globals['now'] = datetime.utcnow
+
+routes_path = os.path.join(template_path, 'routes.yaml')
+
+try:
+    with open(routes_path) as f:
+        routes = yaml.load(f)
+except Exception as e:
+    log.error('Error loading routes from file: {}: {}'.format(
+        str(e.__class__.__name__), str(e)))
+    routes = {}
+
+log.debug('Loaded routes: {}'.format(routes))
 
 
 def render_page(path, format='html', event={}, status_msg=None):

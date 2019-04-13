@@ -1,0 +1,8 @@
+---
+'css': '/css/{resource+}'
+'js': '/js/{resource+}'
+'favicon': '/favicon.ico'
+'keybase': '/keybase.txt'
+'robots': '/robots.txt'
+
+# vim: ts=2 sts=2 sw=2 expandtab
