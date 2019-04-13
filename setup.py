@@ -19,8 +19,8 @@ setup(
     include_package_data=False,
     entry_points={},
     install_requires=[
-        'boto3',
-        'botocore',
-        'Jinja2',
+        'boto3==1.7.4',
+        'botocore==1.10.74',
+        'Jinja2==2.10.1',
     ]
 )
