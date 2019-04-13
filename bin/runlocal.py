@@ -43,14 +43,14 @@ try:
 except Exception as e:
     print('Error loading static routes from file: {}: {}'.format(
         str(e.__class__.__name__), str(e)))
-    static_routes = []
+    static_routes = {}
 
 routes = load_handlers([
     (r'^/$', 'lambda/web/page_renderer.py'),
 ] + [
     ('^{}$'.format(re.sub(r'\{([a-zA-Z0-9]+)([+*])\}', r'(?P<\1>.\2)', x)),
      'lambda/web/fetch_static.py')
-    for x in static_routes
+    for x in list(static_routes.values())
 ] + [
     (r'^/pages/content$', 'lambda/api/get_pagecontent.py'),
     (r'^/(?P<resource>.*)$', 'lambda/web/page_renderer.py'),

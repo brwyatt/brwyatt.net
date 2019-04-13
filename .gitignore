@@ -5,6 +5,7 @@ __pycache__/
 *.egg-info/
 
 # Build artifacts
+app-sam.yaml
 /build/
 /staticbuild/
 /templatesbuild/

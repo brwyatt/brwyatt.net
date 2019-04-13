@@ -174,36 +174,7 @@ Resources:
           STATIC_PATH: '/opt/static'
           TEMPLATE_PATH: '/opt/templates'
       Events:
-        css:
-          Type: Api
-          Properties:
-            RestApiId: !Ref BrwyattWeb
-            Path: '/css/{resource+}'
-            Method: GET
-        js:
-          Type: Api
-          Properties:
-            RestApiId: !Ref BrwyattWeb
-            Path: '/js/{resource+}'
-            Method: GET
-        favicon:
-          Type: Api
-          Properties:
-            RestApiId: !Ref BrwyattWeb
-            Path: '/favicon.ico'
-            Method: GET
-        keybase:
-          Type: Api
-          Properties:
-            RestApiId: !Ref BrwyattWeb
-            Path: '/keybase.txt'
-            Method: GET
-        robots:
-          Type: Api
-          Properties:
-            RestApiId: !Ref BrwyattWeb
-            Path: '/robots.txt'
-            Method: GET
+        {{static_events}}
 
 Outputs:
   ApiUrl:
