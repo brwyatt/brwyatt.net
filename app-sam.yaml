@@ -147,17 +147,11 @@ Resources:
         Variables:
           TEMPLATE_PATH: '/opt/templates'
       Events:
-        root:
+        default:
           Type: Api
           Properties:
             RestApiId: !Ref BrwyattWeb
-            Path: '/'
-            Method: GET
-        proxy:
-          Type: Api
-          Properties:
-            RestApiId: !Ref BrwyattWeb
-            Path: '/{resource+}'
+            Path: '{resource+}'
             Method: GET
 
   StaticContent:
