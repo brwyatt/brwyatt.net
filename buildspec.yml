@@ -3,7 +3,8 @@ version: 0.1
 phases:
   install:
     commands:
-      - echo "Nothing to install"
+      - echo "Running build dependencies install"
+      - pip install PyYAML
   pre_build:
     commands:
       - echo "Running pre-build"
