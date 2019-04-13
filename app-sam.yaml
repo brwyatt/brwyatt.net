@@ -157,7 +157,7 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref BrwyattWeb
-            Path: '/{proxy+}'
+            Path: '/{resource+}'
             Method: GET
 
   StaticContent:
