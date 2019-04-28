@@ -47,6 +47,8 @@ except Exception as e:
 
 routes = load_handlers([
     (r'^/$', 'lambda/web/page_renderer.py'),
+    (r'^/signin$', 'lambda/web/signin.py'),
+    (r'^/signout$', 'lambda/web/signout.py'),
 ] + [
     ('^{}$'.format(re.sub(r'\{([a-zA-Z0-9]+)([+*])\}', r'(?P<\1>.\2)', x)),
      'lambda/web/fetch_static.py')

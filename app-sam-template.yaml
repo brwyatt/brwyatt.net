@@ -160,6 +160,34 @@ Resources:
             Path: '/{resource+}'
             Method: GET
 
+  SignIn:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: signin.handler
+      CodeUri: lambda/web/signin.py
+      Policies: AWSLambdaBasicExecutionRole
+      Events:
+        root:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BrwyattWeb
+            Path: '/signin'
+            Method: GET
+
+  SignOut:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: signout.handler
+      CodeUri: lambda/web/signout.py
+      Policies: AWSLambdaBasicExecutionRole
+      Events:
+        root:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BrwyattWeb
+            Path: '/signout'
+            Method: GET
+
   StaticContent:
     Type: AWS::Serverless::Function
     Properties:
