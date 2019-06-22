@@ -8,7 +8,7 @@
     {% include "GoogleAds.html" %}
     {% include "js.html" %}
   </head>
-  <body>
+  <body onclick="clicktrack(event);" onauxclick="clicktrack(event);">
     <div id='viewpane'>
       <div id='siteheader'>
         {% if stage != 'Prod' -%}
