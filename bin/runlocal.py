@@ -28,11 +28,11 @@ os.environ['API_DOMAIN'] = HOST_PORT
 def load_handlers(routes):
     route_handlers = []
 
-    for route, file_path in routes:
+    for route, verbs, file_path in routes:
         spec = importlib.util.spec_from_file_location("name", file_path)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-        route_handlers.append((route, module.handler))
+        route_handlers.append((route, verbs, module.handler))
 
     return route_handlers
 
@@ -46,14 +46,15 @@ except Exception as e:
     static_routes = {}
 
 routes = load_handlers([
-    (r'^/$', 'lambda/web/page_renderer.py'),
+    (r'^/$', ['GET'], 'lambda/web/page_renderer.py'),
 ] + [
     ('^{}$'.format(re.sub(r'\{([a-zA-Z0-9]+)([+*])\}', r'(?P<\1>.\2)', x)),
-     'lambda/web/fetch_static.py')
+     ['GET'], 'lambda/web/fetch_static.py')
     for x in list(static_routes.values())
 ] + [
-    (r'^/pages/content$', 'lambda/api/get_pagecontent.py'),
-    (r'^/(?P<resource>.*)$', 'lambda/web/page_renderer.py'),
+    (r'^/pages/content$', ['GET'], 'lambda/api/get_pagecontent.py'),
+    (r'^/tracking/linkclick$', ['POST'], 'lambda/api/log_linkclick.py'),
+    (r'^/(?P<resource>.*)$', ['GET'], 'lambda/web/page_renderer.py'),
 ])
 
 print('Loaded routes: {}'.format([x[0] for x in routes]))
@@ -65,26 +66,44 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.send_header('Content-Type', 'text/html')
         self.end_headers()
 
+    def do_POST(self):
+        self.execute('POST')
+
     def do_GET(self):
+        self.execute('GET')
+
+    def execute(self, verb):
         path = urlparse(self.path).path
         queryParams = {x: y[0] for x, y in
                        parse_qs(urlparse(self.path).query).items()}
-        for route, handler in routes:
+        for route, verbs, handler in routes:
             match = re.match(route, path)
             if match:
+                if verb not in verbs:
+                    self.send_response(501, f"Unsupported method ('{verb}')")
+                    self.send_header('Content-Type', 'text/plain')
+                    self.end_headers()
+                    self.wfile.write(bytes('Method unsupported', 'utf-8'))
+                    return
+
                 event = {
                     'path': path,
                     'pathParameters': match.groupdict(),
                     'queryStringParameters': queryParams,
+                    'headers': {key: value for key, value in
+                                self.headers.__dict__.get('_headers', [])},
                     'requestContext': {
                         'identity': {
                             'sourceIp': '127.0.0.1',
+                            'userAgent': self.headers.get('user-agent', 'null'),
                         },
                     },
                     'resource': path,  # close enough
                     'stageVariables': {
                         'HostName': HOST_PORT,
-                    }
+                    },
+                    'body': str(self.rfile.read(int(
+                        self.headers.get('content-length', 0))), 'utf-8'),
                 }
                 res = handler(event, None)
 
