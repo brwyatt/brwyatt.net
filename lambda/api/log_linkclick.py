@@ -19,11 +19,13 @@ def handler(event, context):
     log.debug('event: {}'.format(event))
 
     queryParams = event['queryStringParameters'] or {}
-    if event['headers'].get('Content-Type', '').startswith(
+    clientHeaders = {key.lower(): value for key, value
+                     in event['headers'].items()}
+    if clientHeaders.get('content-type', '').lower().startswith(
             'application/x-www-form-urlencoded'):
         postParams = {x: y[0] for x, y in
                       parse_qs(event['body']).items()}
-    elif event['headers'].get('Content-Type', '').startswith(
+    elif clientHeaders.get('content-type', '').lower().startswith(
             'application/json'):
         postParams = json.loads(event['body'])
     else:
