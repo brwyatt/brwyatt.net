@@ -53,6 +53,7 @@ routes = load_handlers([
     for x in list(static_routes.values())
 ] + [
     (r'^/pages/content$', ['GET'], 'lambda/api/get_pagecontent.py'),
+    (r'^/tracking/linkclick$', ['POST'], 'lambda/api/log_linkclick.py'),
     (r'^/(?P<resource>.*)$', ['GET'], 'lambda/web/page_renderer.py'),
 ])
 
@@ -92,6 +93,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                     'requestContext': {
                         'identity': {
                             'sourceIp': '127.0.0.1',
+                            'userAgent': self.headers.get('user-agent', 'null'),
                         },
                     },
                     'resource': path,  # close enough
