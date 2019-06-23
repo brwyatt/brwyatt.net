@@ -90,6 +90,8 @@ class RequestHandler(BaseHTTPRequestHandler):
                     'path': path,
                     'pathParameters': match.groupdict(),
                     'queryStringParameters': queryParams,
+                    'headers': {key: value for key, value in
+                                self.headers.__dict__.get('_headers', [])},
                     'requestContext': {
                         'identity': {
                             'sourceIp': '127.0.0.1',
