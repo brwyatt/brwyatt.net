@@ -78,6 +78,13 @@ class RequestHandler(BaseHTTPRequestHandler):
         for route, verbs, handler in routes:
             match = re.match(route, path)
             if match:
+                if verb not in verbs:
+                    self.send_response(501, f"Unsupported method ('{verb}')")
+                    self.send_header('Content-Type', 'text/plain')
+                    self.end_headers()
+                    self.wfile.write(bytes('Method unsupported', 'utf-8'))
+                    return
+
                 event = {
                     'path': path,
                     'pathParameters': match.groupdict(),
@@ -90,7 +97,9 @@ class RequestHandler(BaseHTTPRequestHandler):
                     'resource': path,  # close enough
                     'stageVariables': {
                         'HostName': HOST_PORT,
-                    }
+                    },
+                    'body': str(self.rfile.read(int(
+                        self.headers.get('content-length', 0))), 'utf-8'),
                 }
                 res = handler(event, None)
 
