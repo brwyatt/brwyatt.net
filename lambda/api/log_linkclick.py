@@ -3,8 +3,6 @@ import os
 from urllib.parse import parse_qs
 
 from brwyatt_web.logging import setup_logging
-from brwyatt_web.pages import render_page
-from brwyatt_web.pages.errors import error400
 
 
 log = setup_logging()
@@ -49,8 +47,17 @@ def handler(event, context):
         }
     else:
         log.error('Request did not include valid link click data')
-        resp = error400(format='json', errmsg='Missing link click data',
-                        event=event)
+        resp = 'Missing link click data',
+        resp = {
+            'statusCode': 400,
+            'headers': {
+                'Content-Type': 'application/json',
+            },
+            'body': json.dumps({
+                'status': 'Error',
+                'message': 'Missing link click data',
+            }),
+        }
 
     if 'headers' not in resp:
         resp['headers'] = {}
