@@ -1,5 +1,4 @@
 function clicktrack(event) {
-  console.log("Event: %O", event);
   if(event.target.nodeName == 'A') { // only operate on link tags
     if(event.target.host != event.target.baseURI.split('/')[2]) { // Ignore self links
       // Fire and forget!
