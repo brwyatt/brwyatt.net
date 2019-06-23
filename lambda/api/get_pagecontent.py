@@ -53,7 +53,7 @@ def handler(event, context):
                 }
     else:
         log.error('Request did not provide a page parameter')
-        resp = error400(format='json', statusmsg='Missing "page" parameter',
+        resp = error400(format='json', errmsg='Missing "page" parameter',
                         event=event)
 
     if 'headers' not in resp:

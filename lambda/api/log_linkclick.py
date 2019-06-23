@@ -42,7 +42,7 @@ def handler(event, context):
         }
     else:
         log.error('Request did not include valid link click data')
-        resp = error400(format='json', statusmsg='Missing link click data',
+        resp = error400(format='json', errmsg='Missing link click data',
                         event=event)
 
     if 'headers' not in resp:
