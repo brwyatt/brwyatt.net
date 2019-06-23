@@ -135,6 +135,20 @@ Resources:
             Path: /pages/content
             Method: GET
 
+  TrackLinkClick:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: log_linkclick.handler
+      CodeUri: lambda/api/log_linkclick.py
+      Policies: AWSLambdaBasicExecutionRole
+      Events:
+        PageContent:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BrwyattApi
+            Path: /tracking/linkclick
+            Method: POST
+
   RenderPage:
     Type: AWS::Serverless::Function
     Properties:
