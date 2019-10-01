@@ -1,6 +1,7 @@
 ---
 'css': '/css/{resource+}'
 'js': '/js/{resource+}'
+'ads': '/ads.txt'
 'favicon': '/favicon.ico'
 'keybase': '/keybase.txt'
 'robots': '/robots.txt'
