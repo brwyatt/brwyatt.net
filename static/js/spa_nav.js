@@ -93,6 +93,11 @@ function update_page(path, title, content) {
     title: title,
     path: path
   }, browser_title, path);
+
+  // Refresh page ads
+  if(googletag) {
+    googletag.pubads().refresh();
+  }
 }
 
 /* vim: set ts=2 sw=2 sts=2 expandtab: */
