@@ -1,2 +1,7 @@
 &copy; {{ now().year }} Bryan Wyatt
+<div style="display: none;">
+{%- for link_text, link_url in contact_links.items() -%}
+  <a rel="me" href="{{ link_url }}"></a>
+{%- endfor -%}
+</div>
 {# vim: set ts=2 sw=2 sts=2 expandtab: -#}
