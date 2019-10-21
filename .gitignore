@@ -9,3 +9,6 @@ app-sam.yaml
 /build/
 /staticbuild/
 /templatesbuild/
+
+# DynamoDB Local
+/dynamodb/
