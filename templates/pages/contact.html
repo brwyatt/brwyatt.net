@@ -8,5 +8,6 @@
   <li><a rel="me" href="{{ link_url }}">{{ link_text }}</a></li>
 {%- endfor %}
 </ul>
+<h1>XSRF Token Test: {{ gen_xsrf_token('test') }}</h1>
 {% endblock %}
 {# vim: set ts=2 sw=2 sts=2 expandtab: -#}

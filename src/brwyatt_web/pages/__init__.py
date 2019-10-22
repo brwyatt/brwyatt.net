@@ -8,6 +8,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from brwyatt_web.exceptions import (
     FileNotFoundException, InvalidClientRequestException)
+from brwyatt_web.forms.helpers import get_xsrf_token_generator
 
 
 log = logging.getLogger(__name__)
@@ -87,6 +88,8 @@ def render_page(path, format='html', event={}, status_msg=None):
         'style_debug': strtobool(query_params.get(
             'style_debug', str(stage in ['Beta', 'Alpha']))),
         'webdomain': webdomain,
+        'gen_xsrf_token': get_xsrf_token_generator(
+            event['requestContext']['identity']['sourceIp']),
     }
 
     log.debug(f'Template Vars = {template_vars}')
