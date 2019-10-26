@@ -1,10 +1,18 @@
 from datetime import datetime
+import logging
 from uuid import UUID, uuid4, uuid5
 
 from boto3 import resource
 
+log = logging.getLogger(__name__)
+
 xsrf_table = resource('dynamodb', endpoint_url="http://localhost:3000").Table("XSRF")
 
+
+def delete_xsrf_token(form_token, form_name, ip):
+    xsrf_table.delete_item(Key={
+        "Token": str(uuid5(uuid5(UUID(form_token), form_name), ip))
+    })
 
 def save_xsrf_token(token, ttl=7200):
     xsrf_table.put_item(Item={

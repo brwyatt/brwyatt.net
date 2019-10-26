@@ -53,6 +53,7 @@ routes = load_handlers([
     for x in list(static_routes.values())
 ] + [
     (r'^/pages/content$', ['GET'], 'lambda/api/get_pagecontent.py'),
+    (r'^/formsubmit/contact$', ['POST'], 'lambda/api/submit_contact.py'),
     (r'^/tracking/linkclick$', ['POST'], 'lambda/api/log_linkclick.py'),
     (r'^/(?P<resource>.*)$', ['GET'], 'lambda/web/page_renderer.py'),
 ])
