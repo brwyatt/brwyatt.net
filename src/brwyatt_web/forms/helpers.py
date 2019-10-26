@@ -9,11 +9,6 @@ log = logging.getLogger(__name__)
 xsrf_table = resource('dynamodb', endpoint_url="http://localhost:3000").Table("XSRF")
 
 
-def delete_xsrf_token(form_token, form_name, ip):
-    xsrf_table.delete_item(Key={
-        "Token": str(uuid5(uuid5(UUID(form_token), form_name), ip))
-    })
-
 def save_xsrf_token(token, ttl=7200):
     xsrf_table.put_item(Item={
         "Token": str(token),
@@ -22,9 +17,16 @@ def save_xsrf_token(token, ttl=7200):
 
 
 def validate_xsrf_token(form_token, form_name, ip):
+    token = str(uuid5(uuid5(UUID(form_token), form_name), ip))
     response = xsrf_table.get_item(Key={
-        "Token": str(uuid5(uuid5(UUID(form_token), form_name), ip))
+        "Token": token,
     })
+
+    if response.get('Item'):
+        # Delete it - Tokens are only valid once!
+        xsrf_table.delete_item(Key={
+            "Token": token,
+        })
 
 
     if response.get('Item', {}).get('Expires', 0) < datetime.utcnow().timestamp():

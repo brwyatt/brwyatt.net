@@ -149,6 +149,20 @@ Resources:
             Path: /tracking/linkclick
             Method: POST
 
+  FormSubmit:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: form_submit.handler
+      CodeUri: lambda/api/form_submit.py
+      Policies: AWSLambdaBasicExecutionRole
+      Events:
+        PageContent:
+          Type: Api
+          Properties:
+            RestApiId: !Ref BrwyattApi
+            Path: '/formsubmit/{form_name+}'
+            Method: POST
+
   RenderPage:
     Type: AWS::Serverless::Function
     Properties:
