@@ -1,9 +1,84 @@
 {% extends base %}
 {% block title %}About{% endblock %}
 {% block content %}
-<p>I guess if you're here, you're looking for a little more information...</p>
-<p>As you may have guessed from the banner at the top of the page, my name is Bryan Wyatt. If you didn't guess that, then suprise!</p>
-<p>Beyond that, I'm a tech enthusiast, with a passion for Linux, automation, coding, and just generally playing around with tech. I've put in a lot of effort into my Puppet infrastructure at home, including a couple modules I've uploaded to the <a href="https://forge.puppet.com/brwyatt">Puppet Forge</a>, and have more recently been playing around with serverless development (including this site) with technologies like Lambda and CloudFormation, and have a few projects up on <a href="https://github.com/brwyatt">GitHub</a>, with varying degrees of activity. I have a list of some of my favorite projects over in the Projects tab.</p>
+<style>
+div#statsbanner {
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid grey;
+}
+div#statsbanner div#photoframe {
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+div#statsbanner div#statsframe {
+  margin: 0;
+  padding: 0;
+}
+div#statsbanner table#stats {
+  border-collapse: separate;
+  border-spacing: 0 5px;
+}
+div#statsbanner table#stats td {
+  padding-left: 5px;
+}
+div#statsbanner table#stats th {
+  border-right: 3px solid grey;
+  font-weight: bold;
+  min-width: 175px;
+  padding-right: 5px;
+  text-align: right;
+  vertical-align: top;
+}
+div#statsbanner table#stats ul {
+  margin: 0;
+  padding: 0;
+  margin-left: 20px;
+}
+</style>
+<div id="statsbanner">
+  <div id="photoframe">
+    <img src="https://static.brwyatt.net/BadgePhoto_2019.jpg" width="100%" />
+  </div>
+  <div id="statsframe">
+    <table id="stats">
+      <tr>
+        <th>Age</th><td>{{ now().year - 1989 }}</td>
+      </tr>
+      <tr>
+        <th>Height</th><td>5'11"</td>
+      </tr>
+      <tr>
+        <th>Pronouns</th><td>He/Him/They/Them</td>
+      </tr>
+      <tr>
+        <th>Current Residence</th><td><a href="https://goo.gl/maps/gSTcShuoex1RCGtd9">Belltown, Seattle, Washington</a></td>
+      </tr>
+      <tr>
+        <th>Occupation</th><td>Systems Development Engineer</td>
+      </tr>
+      <tr>
+        <th>Hobbies</th><td>
+          <ul>
+            <li>Hiking (generally around <a href="https://goo.gl/maps/Lt1fCEZP1dxY9eTb9">Mount Si</a>)</li>
+            <li><a href="https://twitter.com/search?q=(%23platedpics%20OR%20%23hellofreshpics)%20(from%3Abrwyatt)">Cooking</a></li>
+            <li>Programming and Server Automation (See: <a href="/projects">Projects</a>)</li>
+            <li>Home automation</li>
+            <li>Board games</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>Pets</th><td><a href="https://photos.app.goo.gl/nxiz8PiCw95GWo9U9">Kaylee</a> (cat)</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<p>I guess if you're here (and have made it this far), you're looking for a little more information...</p>
+<p>In general, I'm a tech enthusiast, with a passion for Linux, automation, coding, and just generally playing around with tech. I've put in a lot of effort into my Puppet infrastructure at home, including a couple modules I've uploaded to the <a href="https://forge.puppet.com/brwyatt">Puppet Forge</a>, and have more recently been playing around with serverless development (including this site) with technologies like Lambda and CloudFormation, and have a few projects up on <a href="https://github.com/brwyatt">GitHub</a>, with varying degrees of activity. I have a list of some of my favorite projects over in the Projects tab.</p>
 <p>I'm currently employed as a Systems Development Engineer, and not looking for any opportunities at the moment. I am, however, open to networking, potential collaboration on fun projects, or even just generally talking about random tech things. Feel free to reach out on any of the methods on the Contact tab above, or send me a pull request on GitHub!</p>
 {% endblock %}
 {# vim: set ts=2 sw=2 sts=2 expandtab: -#}
