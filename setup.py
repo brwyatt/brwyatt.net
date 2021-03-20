@@ -21,7 +21,7 @@ setup(
     install_requires=[
         'boto3==1.7.4',
         'botocore==1.10.74',
-        'Jinja2==2.10.1',
+        'Jinja2==2.11.3',
         'PyYAML==5.1',
     ]
 )
