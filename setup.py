@@ -22,6 +22,6 @@ setup(
         'boto3==1.7.4',
         'botocore==1.10.74',
         'Jinja2==2.10.1',
-        'PyYAML==5.1',
+        'PyYAML==5.4',
     ]
 )
