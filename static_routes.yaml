@@ -6,5 +6,6 @@
 'keybase': '/keybase.txt'
 'robots': '/robots.txt'
 'openpgpkey': '/.well-known/openpgpkey/{pgpdata+}'
+'mtasts': '/.well-known/mta-sts.txt'
 
 # vim: ts=2 sts=2 sw=2 expandtab

@@ -1,0 +1,5 @@
+version: STSv1
+mode: testing
+mx: mx01.brwyatt.net
+mx: mx02.brwyatt.net
+max_age: 86400
