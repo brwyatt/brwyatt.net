@@ -23,19 +23,22 @@ Parameters:
   GitHubToken:
     NoEcho: true
     Type: String
-    Description: "Secret. OAuthToken with access to Repo. Long string of characters and digits. Go to https://github.com/settings/tokens"
-
+    Description: >-
+      Secret. OAuthToken with access to Repo. Long string of characters and
+      digits. Go to https://github.com/settings/tokens
 Resources:
-  # CodeBuild project and resources (S3 Bucket for build artifacts, Role, Project)
   BuildArtifactsBucket:
-      Type: AWS::S3::Bucket
+    Type: 'AWS::S3::Bucket'
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: d50a7958-cfbb-455c-8709-45866dc8227f
   CodeBuildServiceRole:
-    Type: AWS::IAM::Role
+    Type: 'AWS::IAM::Role'
     Properties:
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: 2012-10-17
         Statement:
-          - Action: 
+          - Action:
               - 'sts:AssumeRole'
             Effect: Allow
             Principal:
@@ -45,12 +48,14 @@ Resources:
       Policies:
         - PolicyName: CodeBuildAccess
           PolicyDocument:
-            Version: '2012-10-17'
+            Version: 2012-10-17
             Statement:
               - Effect: Allow
                 Resource:
-                  - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ServiceName}_build'
-                  - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ServiceName}_build:*'
+                  - !Sub >-
+                    arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ServiceName}_build
+                  - !Sub >-
+                    arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ServiceName}_build:*
                 Action:
                   - 'logs:CreateLogGroup'
                   - 'logs:CreateLogStream'
@@ -58,40 +63,43 @@ Resources:
               - Effect: Allow
                 Resource:
                   - !Sub 'arn:aws:s3:::${BuildArtifactsBucket}/*'
-                Action: 
+                Action:
                   - 's3:GetObject'
                   - 's3:GetObjectVersion'
                   - 's3:PutObject'
-
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: d28fc06b-f33e-4e4e-b529-c017d9272b0f
   CodeBuildProject:
-    Type: AWS::CodeBuild::Project
+    Type: 'AWS::CodeBuild::Project'
     Properties:
       Name: !Sub '${ServiceName}_build'
       Description: !Sub 'Build project for the ${ServiceName} service'
       Artifacts:
         Type: CODEPIPELINE
-      Environment: 
+      Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL
-        Image: aws/codebuild/python:3.7.1
+        Image: 'aws/codebuild/python:3.7.1'
         EnvironmentVariables:
           - Name: BUILD_OUTPUT_BUCKET
             Value: !Ref BuildArtifactsBucket
       ServiceRole: !GetAtt CodeBuildServiceRole.Arn
-      Source: 
+      Source:
         Type: CODEPIPELINE
- 
-  # CodePipeline definition and required roles
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: f185ffdb-eb7e-40a0-8a5e-a0953be94770
   CFNPipelinePolicy:
-    Type: AWS::IAM::ManagedPolicy
+    Type: 'AWS::IAM::ManagedPolicy'
     Properties:
       Description: CloudFormation Pipeline Execution Policy
-      Path: "/"
+      Path: /
       PolicyDocument:
-        Version: '2012-10-17'
+        Version: 2012-10-17
         Statement:
           Effect: Allow
-          Action: 
+          Action:
             - 'cloudformation:CreateStack'
             - 'cloudformation:DescribeStacks'
             - 'cloudformation:DeleteStack'
@@ -105,15 +113,17 @@ Resources:
             - 'cloudformation:ValidateTemplate'
             - 'codebuild:StartBuild'
             - 'codebuild:BatchGetBuilds'
-          Resource: "*"
-
+          Resource: '*'
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 33d6215a-60ad-4503-9c99-f59d1e08397e
   CloudFormationExecutionRole:
-    Type: AWS::IAM::Role
+    Type: 'AWS::IAM::Role'
     Properties:
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: 2012-10-17
         Statement:
-          Action: 
+          Action:
             - 'sts:AssumeRole'
           Effect: Allow
           Principal:
@@ -122,18 +132,20 @@ Resources:
       Path: /
       ManagedPolicyArns:
         - 'arn:aws:iam::aws:policy/AdministratorAccess'
-
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 8c2c896f-efcf-4fe8-94b2-ef82cf9315e5
   PipelineExecutionRole:
-    Type: AWS::IAM::Role
+    Type: 'AWS::IAM::Role'
     Properties:
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: 2012-10-17
         Statement:
-          - Action: 
+          - Action:
               - 'sts:AssumeRole'
             Effect: Allow
             Principal:
-              Service: 
+              Service:
                 - codepipeline.amazonaws.com
       Path: /
       ManagedPolicyArns:
@@ -143,7 +155,7 @@ Resources:
       Policies:
         - PolicyName: CodePipelineAccess
           PolicyDocument:
-            Version: '2012-10-17'
+            Version: 2012-10-17
             Statement:
               - Action:
                   - 'iam:PassRole'
@@ -152,13 +164,16 @@ Resources:
                   - 'lambda:InvokeAsyc'
                 Effect: Allow
                 Resource: '*'
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: cf9b6388-1c6e-4773-b589-39f4a4ed51d9
   Pipeline:
-    Type: AWS::CodePipeline::Pipeline
+    Type: 'AWS::CodePipeline::Pipeline'
     Properties:
-      ArtifactStore: 
+      ArtifactStore:
         Location: !Ref BuildArtifactsBucket
         Type: S3
-      Name: !Sub ${ServiceName}_pipeline
+      Name: !Sub '${ServiceName}_pipeline'
       RoleArn: !GetAtt PipelineExecutionRole.Arn
       Stages:
         - Name: Source
@@ -204,7 +219,7 @@ Resources:
                 RoleArn: !GetAtt CloudFormationExecutionRole.Arn
                 StackName: !Sub '${ServiceName}-Beta'
                 ChangeSetName: !Sub '${ServiceName}-ChangeSet-Beta'
-                TemplatePath: BuiltZip::app-output_sam.yaml
+                TemplatePath: 'BuiltZip::app-output_sam.yaml'
                 Capabilities: CAPABILITY_IAM
                 ParameterOverrides: !Sub |
                   {
@@ -242,7 +257,7 @@ Resources:
                 RoleArn: !GetAtt CloudFormationExecutionRole.Arn
                 StackName: !Sub '${ServiceName}-Gamma'
                 ChangeSetName: !Sub '${ServiceName}-ChangeSet-Gamma'
-                TemplatePath: BuiltZip::app-output_sam.yaml
+                TemplatePath: 'BuiltZip::app-output_sam.yaml'
                 Capabilities: CAPABILITY_IAM
                 ParameterOverrides: !Sub |
                   {
@@ -287,7 +302,7 @@ Resources:
                 RoleArn: !GetAtt CloudFormationExecutionRole.Arn
                 StackName: !Sub '${ServiceName}-Prod'
                 ChangeSetName: !Sub '${ServiceName}-ChangeSet-Prod'
-                TemplatePath: BuiltZip::app-output_sam.yaml
+                TemplatePath: 'BuiltZip::app-output_sam.yaml'
                 Capabilities: CAPABILITY_IAM
                 ParameterOverrides: !Sub |
                   {
@@ -312,5 +327,71 @@ Resources:
               OutputArtifacts:
                 - Name: !Sub '${ServiceName}ProdChangeSet'
               RunOrder: 3
-
-# vim: ts=2 sts=2 sw=2 expandtab
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: a82de827-0f08-4ae1-b66b-eb6962f5af71
+Metadata:
+  'AWS::CloudFormation::Designer':
+    8c2c896f-efcf-4fe8-94b2-ef82cf9315e5:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 60
+        'y': 90
+      z: 1
+      embeds: []
+    33d6215a-60ad-4503-9c99-f59d1e08397e:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 180
+        'y': 90
+      z: 1
+      embeds: []
+    cf9b6388-1c6e-4773-b589-39f4a4ed51d9:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 60
+        'y': 210
+      z: 1
+      embeds: []
+    d28fc06b-f33e-4e4e-b529-c017d9272b0f:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 180
+        'y': 210
+      z: 1
+      embeds: []
+    d50a7958-cfbb-455c-8709-45866dc8227f:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 300
+        'y': 90
+      z: 1
+      embeds: []
+    f185ffdb-eb7e-40a0-8a5e-a0953be94770:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 300
+        'y': 210
+      z: 1
+      embeds: []
+    a82de827-0f08-4ae1-b66b-eb6962f5af71:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 60
+        'y': 330
+      z: 1
+      embeds: []
