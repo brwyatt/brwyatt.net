@@ -31,7 +31,7 @@ Resources:
     Type: 'AWS::S3::Bucket'
     Metadata:
       'AWS::CloudFormation::Designer':
-        id: d50a7958-cfbb-455c-8709-45866dc8227f
+        id: 55c6df7a-f27a-49e9-800c-8fb2f85e04ab
   CodeBuildServiceRole:
     Type: 'AWS::IAM::Role'
     Properties:
@@ -69,7 +69,7 @@ Resources:
                   - 's3:PutObject'
     Metadata:
       'AWS::CloudFormation::Designer':
-        id: d28fc06b-f33e-4e4e-b529-c017d9272b0f
+        id: 8ac9f794-ebc0-4cf6-b4c4-431fcf9b64c1
   CodeBuildProject:
     Type: 'AWS::CodeBuild::Project'
     Properties:
@@ -78,9 +78,9 @@ Resources:
       Artifacts:
         Type: CODEPIPELINE
       Environment:
-        Type: LINUX_CONTAINER
-        ComputeType: BUILD_GENERAL1_SMALL
-        Image: 'aws/codebuild/python:3.7.1'
+        Type: LINUX_LAMBDA_CONTAINER
+        ComputeType: BUILD_LAMBDA_1GB
+        Image: 'aws/codebuild/amazonlinux-x86_64-lambda-standard:python3.12'
         EnvironmentVariables:
           - Name: BUILD_OUTPUT_BUCKET
             Value: !Ref BuildArtifactsBucket
@@ -89,7 +89,7 @@ Resources:
         Type: CODEPIPELINE
     Metadata:
       'AWS::CloudFormation::Designer':
-        id: f185ffdb-eb7e-40a0-8a5e-a0953be94770
+        id: ab1dc439-a120-4b5e-b4a6-f185a350c61c
   CFNPipelinePolicy:
     Type: 'AWS::IAM::ManagedPolicy'
     Properties:
@@ -116,7 +116,7 @@ Resources:
           Resource: '*'
     Metadata:
       'AWS::CloudFormation::Designer':
-        id: 33d6215a-60ad-4503-9c99-f59d1e08397e
+        id: e89a5cfb-a421-4de1-9c09-7e95dd1be69c
   CloudFormationExecutionRole:
     Type: 'AWS::IAM::Role'
     Properties:
@@ -134,7 +134,7 @@ Resources:
         - 'arn:aws:iam::aws:policy/AdministratorAccess'
     Metadata:
       'AWS::CloudFormation::Designer':
-        id: 8c2c896f-efcf-4fe8-94b2-ef82cf9315e5
+        id: d56dfbef-19b8-4995-8fd9-55950aa8444a
   PipelineExecutionRole:
     Type: 'AWS::IAM::Role'
     Properties:
@@ -166,7 +166,7 @@ Resources:
                 Resource: '*'
     Metadata:
       'AWS::CloudFormation::Designer':
-        id: cf9b6388-1c6e-4773-b589-39f4a4ed51d9
+        id: c97c4d35-3ecb-4bef-9a1a-f406d4d3ec0f
   Pipeline:
     Type: 'AWS::CodePipeline::Pipeline'
     Properties:
@@ -329,10 +329,10 @@ Resources:
               RunOrder: 3
     Metadata:
       'AWS::CloudFormation::Designer':
-        id: a82de827-0f08-4ae1-b66b-eb6962f5af71
+        id: 46ddb31c-ae67-48c6-88e8-f9cf2cc4d1e3
 Metadata:
   'AWS::CloudFormation::Designer':
-    8c2c896f-efcf-4fe8-94b2-ef82cf9315e5:
+    d56dfbef-19b8-4995-8fd9-55950aa8444a:
       size:
         width: 60
         height: 60
@@ -341,7 +341,7 @@ Metadata:
         'y': 90
       z: 1
       embeds: []
-    33d6215a-60ad-4503-9c99-f59d1e08397e:
+    e89a5cfb-a421-4de1-9c09-7e95dd1be69c:
       size:
         width: 60
         height: 60
@@ -350,7 +350,7 @@ Metadata:
         'y': 90
       z: 1
       embeds: []
-    cf9b6388-1c6e-4773-b589-39f4a4ed51d9:
+    c97c4d35-3ecb-4bef-9a1a-f406d4d3ec0f:
       size:
         width: 60
         height: 60
@@ -359,7 +359,7 @@ Metadata:
         'y': 210
       z: 1
       embeds: []
-    d28fc06b-f33e-4e4e-b529-c017d9272b0f:
+    8ac9f794-ebc0-4cf6-b4c4-431fcf9b64c1:
       size:
         width: 60
         height: 60
@@ -368,7 +368,7 @@ Metadata:
         'y': 210
       z: 1
       embeds: []
-    d50a7958-cfbb-455c-8709-45866dc8227f:
+    55c6df7a-f27a-49e9-800c-8fb2f85e04ab:
       size:
         width: 60
         height: 60
@@ -377,7 +377,7 @@ Metadata:
         'y': 90
       z: 1
       embeds: []
-    f185ffdb-eb7e-40a0-8a5e-a0953be94770:
+    ab1dc439-a120-4b5e-b4a6-f185a350c61c:
       size:
         width: 60
         height: 60
@@ -386,7 +386,7 @@ Metadata:
         'y': 210
       z: 1
       embeds: []
-    a82de827-0f08-4ae1-b66b-eb6962f5af71:
+    46ddb31c-ae67-48c6-88e8-f9cf2cc4d1e3:
       size:
         width: 60
         height: 60
