@@ -48,7 +48,7 @@ routes_path = os.path.join(template_path, 'routes.yaml')
 
 try:
     with open(routes_path) as f:
-        routes = yaml.load(f)
+        routes = yaml.load(f, Loader=yaml.SafeLoader)
 except Exception as e:
     log.error('Error loading routes from file: {}: {}'.format(
         str(e.__class__.__name__), str(e)))

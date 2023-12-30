@@ -39,7 +39,7 @@ def load_handlers(routes):
 
 try:
     with open('static_routes.yaml') as f:
-        static_routes = yaml.load(f)
+        static_routes = yaml.load(f, Loader=yaml.SafeLoader)
 except Exception as e:
     print('Error loading static routes from file: {}: {}'.format(
         str(e.__class__.__name__), str(e)))
