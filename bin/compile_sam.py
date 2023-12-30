@@ -11,7 +11,7 @@ with open(sam_template) as f:
     sam = f.read()
 
 with open(static_routes) as f:
-    routes = yaml.load(f)
+    routes = yaml.load(f, Loader=yaml.SafeLoader)
 
 match_string = r'( +){{static_events}}'
 indent = re.search(f'\n{match_string}\n', sam).group(1)
