@@ -3,6 +3,7 @@ Transform: AWS::Serverless-2016-10-31
 
 Globals:
   Function:
+    Architectures: arm64
     Runtime: python3.12
     Layers:
       - !Ref BrwyattLayer
@@ -93,6 +94,8 @@ Resources:
       Description: Code for brwyatt.net
       ContentUri: build/
       RetentionPolicy: Delete
+      CompatibleArchitectures:
+        - arm64
       CompatibleRuntimes:
         - python3.12
 
@@ -103,6 +106,8 @@ Resources:
       Description: Static code assets for brwyatt.net - CSS, JS
       ContentUri: staticbuild/
       RetentionPolicy: Delete
+      CompatibleArchitectures:
+        - arm64
       CompatibleRuntimes:
         - python3.12
 
@@ -113,6 +118,8 @@ Resources:
       Description: Jinja2 Templates for brwyatt.net
       ContentUri: templatesbuild/
       RetentionPolicy: Delete
+      CompatibleArchitectures:
+        - arm64
       CompatibleRuntimes:
         - python3.12
 

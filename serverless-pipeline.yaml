@@ -78,9 +78,9 @@ Resources:
       Artifacts:
         Type: CODEPIPELINE
       Environment:
-        Type: LINUX_LAMBDA_CONTAINER
+        Type: ARM_LAMBDA_CONTAINER
         ComputeType: BUILD_LAMBDA_1GB
-        Image: 'aws/codebuild/amazonlinux-x86_64-lambda-standard:python3.12'
+        Image: 'aws/codebuild/amazonlinux-aarch64-lambda-standard:python3.12'
         EnvironmentVariables:
           - Name: BUILD_OUTPUT_BUCKET
             Value: !Ref BuildArtifactsBucket
