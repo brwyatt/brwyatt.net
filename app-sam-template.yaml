@@ -3,7 +3,8 @@ Transform: AWS::Serverless-2016-10-31
 
 Globals:
   Function:
-    Architectures: arm64
+    Architectures:
+      - arm64
     Runtime: python3.12
     Layers:
       - !Ref BrwyattLayer
