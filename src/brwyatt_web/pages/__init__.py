@@ -25,14 +25,10 @@ stage_color = {'Alpha': 'darkred', 'Beta': 'darkgreen',
                'Gamma': 'indigo'}.get(stage, 'lightblue')
 
 contact_links = dict(sorted({
-    'Curious Cat': 'https://curiouscat.me/brwyatt',
+    'BlueSky': 'https://bsky.app/profile/brwyatt.net',
     'GitHub': 'https://github.com/brwyatt/',
-    'Keybase': 'https://keybase.io/brwyatt',
     'LinkedIn': 'https://www.linkedin.com/in/brwyatt/',
-    'Mastodon / GNU Social': 'https://mastodon.social/@brwyatt',
     'Steam Community': 'https://steamcommunity.com/id/brwyatt',
-    'Telegram': 'https://t.me/brwyatt',
-    'Twitter': 'https://twitter.com/brwyatt',
 }.items(), key=lambda kv: (kv[0], kv[1])))
 
 template_path = os.environ.get('TEMPLATE_PATH',
