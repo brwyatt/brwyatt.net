@@ -54,6 +54,9 @@ def load_static_asset(asset_type, file_name):
         },
     }
 
+    if file_name.startswith(".well-known/"):
+        res['headers']['Access-Control-Allow-Origin'] = "*"
+
     with open(file_path, 'rb') as asset:
         content = asset.read()
 
